@@ -57,5 +57,7 @@ int main(int argc, char* argv[])
 
     std::cout << std::endl << "Finish" << std::endl;
 
+    delete menu;
+
     return 0;
 }

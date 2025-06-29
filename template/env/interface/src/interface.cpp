@@ -10,6 +10,11 @@ Interface::Interface(InterfaceStream* i_stream) : stream(i_stream)
 
 }
 
+Interface::~Interface()
+{
+    delete stream;
+}
+
 void Interface::set(std::string path)
 {
     stream->set(path);
