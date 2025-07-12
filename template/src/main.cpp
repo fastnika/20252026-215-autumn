@@ -42,7 +42,8 @@ int main(int argc, char* argv[])
             continue;
         case INTERFACE_COMMAND_3:
             std::cout << std::endl << "Run Command_2";
-            continue;
+            // TODO : Считывание дополнительных данных, например - вещественных
+	    continue;
         case INTERFACE_COMMAND_EXIT:
             std::cout << std::endl << "Go away!";
             break;

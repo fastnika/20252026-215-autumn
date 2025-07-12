@@ -1,4 +1,5 @@
 #include "interface_stream.h"
+#include "resource.h"
 
 InterfaceStream::InterfaceStream() : in_stream(&std::cin)
 {
