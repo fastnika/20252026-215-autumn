@@ -12,23 +12,16 @@
 
 #include <iostream>
 
-#ifdef __linux__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wvariadic-macros"
-#endif
 /*!
     Макро-функция обработчик форматированного логгирования ошибок
     \param[in] code Код ошибки
-    \param[in] fmt_msg Пояснение ошибки (может быть форматированным сообщением с аргументами)
+    \param[in] msg Пояснение ошибки
 */
-#define ERR_LOGGING(code,fmt_msg...) \
-    std::cerr << std::endl << std::endl << "Error:\t" << fmt_msg << std::endl; \
-    std::cerr << "Code:\t" << std::hex << std::showbase << std::setw(8) << std::setfill('0') << code << std::endl;
-    std::cerr << "File:\t" << __FILE__ << std::endl;
+#define ERR_LOGGING(code,msg) \
+    std::cerr << std::endl << std::endl << "Error:\t" << msg << std::endl; \
+    std::cerr << "Code:\t" << std::hex << std::showbase << std::setw(8) << std::setfill('0') << code << std::endl; \
+    std::cerr << "File:\t" << __FILE__ << std::endl; \
     std::cerr << "Line:\t" << __LINE__ << std::endl;
-#ifdef __linux__
-#pragma GCC diagnostic pop
-#endif
 
 /*!
     \defgroup TASK_GROUP Группа идентификаторов Задачи
