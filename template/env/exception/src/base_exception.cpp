@@ -9,42 +9,42 @@
 
 #include "base_exception.h"
 
-base_exception::base_exception()
+BaseException::BaseException()
 {
 
 }
 
-base_exception::base_exception(base_exception* other)
+BaseException::BaseException(BaseException* other)
 {
 
 }
 
-base_exception::base_exception(std::string msg)
+BaseException::BaseException(std::string msg)
 {
 
 }
 
-base_exception::base_exception(int code)
+BaseException::BaseException(int code)
 {
 
 }
 
-base_exception::base_exception(int code, std::string msg)
+BaseException::BaseException(int code, std::string msg)
 {
 
 }
 
-base_exception::~base_exception()
+BaseException::~BaseException()
 {
 
 }
 
-int base_exception::res()
+int BaseException::res()
 {
 
 }
 
-std::string base_exception::msg()
+std::string BaseException::msg()
 {
 
 }

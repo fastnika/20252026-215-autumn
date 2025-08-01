@@ -1,4 +1,5 @@
 #include "interface_stream.h"
+#include "base_exception.h"
 
 #pragma once
 
@@ -25,3 +26,7 @@ public:
 };
 
 // TODO  ласс с исключением
+class InterfaceException : public BaseException
+{
+    using BaseException::BaseException;
+};

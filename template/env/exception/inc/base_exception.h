@@ -10,7 +10,9 @@
 #include <exception>
 #include <string>
 
-class task_base_exception : public std::exception
+#pragma once
+
+class BaseException : public std::exception
 {
 protected:
     struct
@@ -20,13 +22,13 @@ protected:
     } error;
 
 public:
-    base_exception();
-    base_exception(base_exception* other);
-    base_exception(std::string msg);
-    base_exception(int code);
-    base_exception(int code, std::string msg);
+    BaseException();
+    BaseException(BaseException* other);
+    BaseException(std::string msg);
+    BaseException(int code);
+    BaseException(int code, std::string msg);
 
-    ~base_exception();
+    ~BaseException();
 
     int res();
     std::string msg();

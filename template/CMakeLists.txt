@@ -17,11 +17,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 
 include_directories(
 	${PROJECT_SOURCE_DIR}/env/interface/inc
+	${PROJECT_SOURCE_DIR}/env/exception/inc
 )
 
 add_library(${APPNAME_LIB_INTERFACE} STATIC 
 	${PROJECT_SOURCE_DIR}/env/interface/src/interface.cpp
 	${PROJECT_SOURCE_DIR}/env/interface/src/interface_stream.cpp
+	${PROJECT_SOURCE_DIR}/env/exception/src/base_exception.cpp
 )
 
 add_executable(${APPNAME}
