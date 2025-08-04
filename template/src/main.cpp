@@ -1,3 +1,12 @@
+/*!
+    \file main.cpp
+    \author Фамилия И.О.
+    \date 1 Января 2025
+    \brief Заголовочный файл-образец с описанием реализации головной функции запуска программы
+
+    Примечание: Данный файл является шаблоном-образцом для редактирования
+*/
+
 #include "interface.h"
 
 int main(int argc, char* argv[])
@@ -41,9 +50,9 @@ int main(int argc, char* argv[])
             std::cout << std::endl << "Run Command_2";
             continue;
         case INTERFACE_COMMAND_3:
-            std::cout << std::endl << "Run Command_2";
+            std::cout << std::endl << "Run Command_3";
             // TODO : Считывание дополнительных данных, например - вещественных
-	    continue;
+	        continue;
         case INTERFACE_COMMAND_EXIT:
             std::cout << std::endl << "Go away!";
             break;

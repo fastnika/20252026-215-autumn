@@ -10,6 +10,7 @@
 // Указание директивой препроцессора однократного подключения
 #pragma once
 
+#include <iomanip>
 #include <iostream>
 
 /*!
