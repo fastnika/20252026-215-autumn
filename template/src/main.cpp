@@ -8,6 +8,7 @@
 */
 
 #include "interface.h"
+#include "resource.h"
 
 int main(int argc, char* argv[])
 {
@@ -20,7 +21,7 @@ int main(int argc, char* argv[])
     if (argc != 2)
     {
         std::cerr << "SELFTEST: Invalid input";
-        return 1;
+        return CODE_SELFTEST_ERROR;
     }
 
     menu->set(argv[1]);
@@ -28,7 +29,7 @@ int main(int argc, char* argv[])
     if (argc > 2)
     {
         std::cerr << "UI: Invalid input";
-        return 1;
+        return CODE_INCORRECT_CONFIGURATION;
     }
 #endif
 
@@ -58,8 +59,14 @@ int main(int argc, char* argv[])
             break;
         case INTERFACE_COMMAND_BREAK:
         case INTERFACE_COMMAND_INVALID:
+#ifdef SELFTEST
+            std::cout << std::endl << "Invalid input selftest";
+            delete menu;
+            return CODE_SELFTEST_ERROR;
+#else
             std::cout << std::endl << "Invalid input";
-            break;
+            continue;
+#endif
         }
 
         break;
@@ -69,5 +76,5 @@ int main(int argc, char* argv[])
 
     delete menu;
 
-    return 0;
+    return CODE_NO_ERROR;
 }

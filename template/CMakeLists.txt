@@ -9,6 +9,8 @@ project(Example CXX)
 set(APPNAME ${PROJECT_NAME})
 set(APPNAME_SELFTEST ${PROJECT_NAME}_selftest)
 set(APPNAME_LIB_INTERFACE ${PROJECT_NAME}_interface)
+set(APPNAME_LIB_EXCEPTION ${PROJECT_NAME}_exception)
+set(APPNAME_LIB_IMPLEMENTATION ${PROJECT_NAME}_implementation)
 set(APPNAME_TEST_PREFIX ${PROJECT_NAME}_test_scenario)
 set(APPNAME_SELFTEST_ENV ${APPNAME_SELFTEST}_prepare_env)
 
@@ -32,17 +34,33 @@ endif()
 
 # Указание расположения используемых заголовочных файлов
 include_directories(
-	${PROJECT_SOURCE_DIR}/env/interface/inc
-	${PROJECT_SOURCE_DIR}/env/exception/inc
-	${PROJECT_SOURCE_DIR}/env/resource/inc
+	${PROJECT_SOURCE_DIR}/env/interface/inc # Заголовочные файлы реализации для работы интерфейса
+	${PROJECT_SOURCE_DIR}/env/exception/inc # Заголовочные файлы реализации для работы с исключениями
+	${PROJECT_SOURCE_DIR}/env/resource/inc  # Заголовочные файлы реализации описываемых кодов ошибок
+	${PROJECT_SOURCE_DIR}/env/task/inc      # Заголовочные файлы реализации производных классов
 )
 
-# Формирование библиотеки интерфейса
-add_library(${APPNAME_LIB_INTERFACE} STATIC 
-	${PROJECT_SOURCE_DIR}/env/interface/src/interface.cpp
-	${PROJECT_SOURCE_DIR}/env/interface/src/interface_stream.cpp
+# Формирование статической библиотеки для работы с исключениями
+add_library(${APPNAME_LIB_EXCEPTION} STATIC
 	${PROJECT_SOURCE_DIR}/env/exception/src/base_exception.cpp
 )
+
+# Формирование статической библиотеки интерфейса
+add_library(${APPNAME_LIB_INTERFACE} STATIC
+	${PROJECT_SOURCE_DIR}/env/interface/src/interface.cpp
+	${PROJECT_SOURCE_DIR}/env/interface/src/interface_stream.cpp
+)
+
+# Указание для библиотеки интерфейса использования библиотеки для работы с исключениями
+target_link_libraries(${APPNAME_LIB_INTERFACE} PRIVATE ${APPNAME_LIB_EXCEPTION})
+
+# Формирование статической библиотеки для работы с реализацией классов
+add_library(${APPNAME_LIB_IMPLEMENTATION} STATIC
+	${PROJECT_SOURCE_DIR}/env/task/src/my_class.cpp
+)
+
+# Указание для библиотеки интерфейса использования библиотеки для работы с исключениями
+target_link_libraries(${APPNAME_LIB_IMPLEMENTATION} PRIVATE ${APPNAME_LIB_EXCEPTION})
 
 # Формирование выходного исполняемого файла программы
 add_executable(${APPNAME}
@@ -50,7 +68,7 @@ add_executable(${APPNAME}
 )
 
 # Указание для исполняемого файла программы библиотеки интерфейса
-target_link_libraries(${APPNAME} PRIVATE ${APPNAME_LIB_INTERFACE})
+target_link_libraries(${APPNAME} PRIVATE ${APPNAME_LIB_INTERFACE} ${APPNAME_LIB_IMPLEMENTATION})
 
 # Формирование выходного исполняемого файла для самотестирования программы
 add_executable(${APPNAME_SELFTEST}
