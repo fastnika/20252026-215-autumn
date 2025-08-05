@@ -62,17 +62,6 @@ typedef struct
 } CommandInformation;
 
 /*!
-    Список доступынх пользовательских команд
-*/
-CommandInformation CommandInfo[] =
-{
-    {INTERFACE_COMMAND_1,    "Command_1"},
-    {INTERFACE_COMMAND_2,    "Command_2"},
-    {INTERFACE_COMMAND_3,    "Command_3"},
-    {INTERFACE_COMMAND_EXIT, "Exit"},
-};
-
-/*!
     Класс для работы с интерфейсом
 */
 class Interface
@@ -125,7 +114,9 @@ public:
     int read();
 };
 
-// TODO  класс с исключением
+/*!
+    Класс обработки исключений при работе с интерфейсом
+*/
 class InterfaceException : public BaseException
 {
     using BaseException::BaseException;

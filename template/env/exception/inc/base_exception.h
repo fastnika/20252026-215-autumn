@@ -21,19 +21,13 @@ class BaseException : public std::exception
 protected:
     
     /*!
-        Структура данных исключения
+        Код ошибки
     */
-    struct
-    {
-        /*!
-            Код ошибки
-        */
-        int _code = -1;
-        /*!
-            Поясняющее сообщение ошибки
-        */
-        std::string _msg = "";
-    } error;
+    int code = -1;
+    /*!
+        Поясняющее сообщение ошибки
+    */
+    std::string message = "";
 
 public:
 

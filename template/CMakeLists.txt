@@ -67,7 +67,7 @@ add_executable(${APPNAME}
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 
-# Указание для исполняемого файла программы библиотеки интерфейса
+# Указание для исполняемого файла программы библиотеки интерфейса и библиотеки реализации классов
 target_link_libraries(${APPNAME} PRIVATE ${APPNAME_LIB_INTERFACE} ${APPNAME_LIB_IMPLEMENTATION})
 
 # Формирование выходного исполняемого файла для самотестирования программы
@@ -75,8 +75,8 @@ add_executable(${APPNAME_SELFTEST}
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 
-# Указание для исполняемого файла самотестирования программы библиотеки интерфейса
-target_link_libraries(${APPNAME_SELFTEST} PRIVATE ${APPNAME_LIB_INTERFACE})
+# Указание для исполняемого файла самотестирования программы библиотеки интерфейса и библиотеки реализации классов
+target_link_libraries(${APPNAME_SELFTEST} PRIVATE ${APPNAME_LIB_INTERFACE} ${APPNAME_LIB_IMPLEMENTATION})
 
 # Указание для исполняемого файла самотестирования определения макропеременной SELFTEST
 target_compile_definitions(${APPNAME_SELFTEST} PRIVATE -DSELFTEST)

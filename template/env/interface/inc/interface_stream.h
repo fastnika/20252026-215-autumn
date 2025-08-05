@@ -16,7 +16,7 @@
 #include "base_exception.h"
 
 /*!
-    Класс для работы с потоком интерфейса    
+    Класс для работы с потоком интерфейса
 */
 class InterfaceStream
 {
@@ -79,7 +79,9 @@ public:
     int read();
 };
 
-// TODO  класс с исключением
+/*!
+    Класс обработки исключений при работе с потоком интерфейса
+*/
 class InterfaceStreamException : public BaseException
 {
     using BaseException::BaseException;

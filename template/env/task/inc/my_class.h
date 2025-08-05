@@ -53,6 +53,9 @@ public:
     int example_external_func(int example_in_var, int* example_out_var);
 };
 
+/*!
+    Класс обработки исключений при описании реалиазации
+*/
 class MyClassException : public BaseException
 {
     using BaseException::BaseException;

@@ -10,6 +10,18 @@
 #include "interface.h"
 #include "resource.h"
 
+/*!
+    Список доступных пользовательских команд для ввода
+*/
+CommandInformation CommandInfo[] =
+{
+    {INTERFACE_COMMAND_1,    "Command_1"},
+    {INTERFACE_COMMAND_2,    "Command_2"},
+    {INTERFACE_COMMAND_3,    "Command_3"},
+    {INTERFACE_COMMAND_EXIT, "Exit"},
+};
+
+
 Interface::Interface() : stream(new InterfaceStream())
 {
 
