@@ -1,3 +1,36 @@
+#
+# Шаблон CMake-инструкций для автоматизированной сборки заданий
+# ВНИМАНИЕ: ПРИ ИСПОЛЬЗОВАНИИ ДАННОГО ШАБЛОНА НЕОБХОДИМО ПРОВЕСТИ АДАПТАЦИЮ
+#
+
+# Примечание по формированию проекта:
+#
+# - Список доступных генераторов проекта (символом * указан генератор по умолчанию)
+# $ cmake -G
+#
+# - Сборка с генератором по умолчанию в директорию out из директории расположения CMakeLists.txt
+#    по умолчанию в CMake для ОС Linux используется генератор - "Unix Makefiles"
+#    по умолчанию в CMake для ОС Windows - "MinGW Makefiles", в случае установки IDE Visual Studio 2022 - "Visual Studio 17 2022"
+# $ cmake -B out .
+#
+# - Сборка с генереатором для IDE Visual Studio 2022 для ОС Windows в директорию out из директории расположения CMakeLists.txt
+# $ cmake -G "Visual Studio 17 2022" -B out .
+#
+# Примечание по сборке проекта:
+# 
+# - Автоматизированная сборка всех подпроектов проекта в директории out с использованием выбранного ранее генератора
+# $ cmake --build out
+#
+# - Автоматизированная сборка выделенного подпроекта проекта в директории out с использованием выбранного ранее генератора
+#  (наименование подпроекта должно совпадать с заданным TARGET первым параметром в add_executable())
+# $ cmake --build out --target Example
+#
+# Примечание по комбинированным командам
+#
+# - Формирование и сборка проекта с генератором по умолчанию в директории out
+# $ cmake -B out . && cmake --build out
+
+
 # Минимальная версия CMake для исполнения данного скрипта
 cmake_minimum_required(VERSION 3.10)
 
@@ -87,19 +120,22 @@ if(MSVC)
 else()
 	# Выставления для ОС Linux с использованием флагов G++
 	if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-		# Выставление дополнительного флага -g для отладки
 		message(STATUS "Configuring for Debug build.")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG_MODE")
+		target_compile_options(${APPNAME_LIB_EXCEPTION} PRIVATE -g -O0)
 		target_compile_options(${APPNAME_LIB_INTERFACE} PRIVATE -g -O0)
 		target_compile_options(${APPNAME_SELFTEST} PRIVATE -g --coverage -O0)
 		target_link_libraries(${APPNAME_SELFTEST} PRIVATE gcov)
+		target_compile_options(${APPNAME} PRIVATE -g -O0)
 	elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-		# Выставление базовых флагов
 		message(STATUS "Configuring for Release build.")
+		target_compile_options(${APPNAME_LIB_EXCEPTION} PRIVATE -O0)
 		target_compile_options(${APPNAME_LIB_INTERFACE} PRIVATE -O0)
 		target_compile_options(${APPNAME_SELFTEST} PRIVATE --coverage -O0)
 		target_link_libraries(${APPNAME_SELFTEST} PRIVATE gcov)
+		target_compile_options(${APPNAME} PRIVATE -O0)
 	else()
-		message(FATAL_ERROR "CMAKE_BUILD_TYPE is set to: ${CMAKE_BUILD_TYPE}")
+		message(FATAL_ERROR "CMAKE_BUILD_TYPE is set to: ${CMAKE_BUILD_TYPE} (use -DCMAKE_BUILD_TYPE=Debug or -DCMAKE_BUILD_TYPE=Release)")
 	endif()
 endif()
 
@@ -169,7 +205,7 @@ add_custom_command(TARGET ${APPNAME_SELFTEST} POST_BUILD
 )
 
 if(MSVC)
-    # Для ОС Windows не требуются дополнительные команды по построению coverage
+    # Для ОС Windows не производятся дополнительные команды по построению coverage
 else()
 	# Действия для ОС Linux
 	

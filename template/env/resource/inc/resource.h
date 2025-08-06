@@ -25,6 +25,16 @@
     std::cerr << "Line:\t" << __LINE__ << std::endl;
 
 /*!
+    Макро-функция обработчик отладочного логгирования (включена только в режиме DEBUG)
+    \param[in] msg Информационное сообщение
+*/
+#ifdef DEBUG_MODE
+#define DEBUG_LOGGING(msg) std::cout << __FILE__ << ":" << __LINE__ << "\t" << msg << std::endl
+#else
+#define DEBUG_LOGGING(msg)
+#endif
+
+/*!
     \defgroup TASK_GROUP Группа идентификаторов Задачи
     @{
 */

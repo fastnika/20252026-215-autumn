@@ -12,23 +12,38 @@
 
 int main(int argc, char* argv[])
 {
-    Interface* menu = new Interface();
+    DEBUG_LOGGING("Run DEBUG MODE");
     
+    Interface* menu = new Interface();
+
     //
     // Инициализация интерфейса
     //
 #ifdef SELFTEST
+    DEBUG_LOGGING("Run SELFTEST MODE");
+    
     if (argc != 2)
     {
-        std::cerr << "SELFTEST: Invalid input";
+        ERR_LOGGING(CODE_SELFTEST_ERROR, "SELFTEST invalid input");
+        delete menu;
         return CODE_SELFTEST_ERROR;
     }
 
-    menu->set(argv[1]);
+    try
+    {
+        menu->set(argv[1]);
+    }
+    catch (InterfaceException& ex)
+    {
+        ERR_LOGGING(ex.res(), ex.msg());
+        delete menu;
+        return ex.res();
+    }
 #else
     if (argc > 2)
     {
-        std::cerr << "UI: Invalid input";
+        ERR_LOGGING(CODE_INCORRECT_CONFIGURATION, "UI invalid input");
+        delete menu;
         return CODE_INCORRECT_CONFIGURATION;
     }
 #endif
@@ -40,39 +55,37 @@ int main(int argc, char* argv[])
     {
 #ifndef SELFTEST
         menu->show();
-        std::cout << std::endl << "Enter command: ";
+        menu->invite();
 #endif
         switch (menu->read())
         {
         case INTERFACE_COMMAND_1:
-            std::cout << std::endl << "Run Command_1";
+            DEBUG_LOGGING("Run Command_1");
             continue;
         case INTERFACE_COMMAND_2:
-            std::cout << std::endl << "Run Command_2";
+            DEBUG_LOGGING("Run Command_2");
             continue;
         case INTERFACE_COMMAND_3:
-            std::cout << std::endl << "Run Command_3";
+            DEBUG_LOGGING("Run Command_3");
             // TODO : Считывание дополнительных данных, например - вещественных
 	        continue;
         case INTERFACE_COMMAND_EXIT:
-            std::cout << std::endl << "Go away!";
+            DEBUG_LOGGING("Run Command_Exit");
             break;
         case INTERFACE_COMMAND_BREAK:
         case INTERFACE_COMMAND_INVALID:
 #ifdef SELFTEST
-            std::cout << std::endl << "Invalid input selftest";
+            ERR_LOGGING(CODE_SELFTEST_ERROR, "Invalid input selftest");
             delete menu;
             return CODE_SELFTEST_ERROR;
 #else
-            std::cout << std::endl << "Invalid input";
+            DEBUG_LOGGING("Invalid input");
             continue;
 #endif
         }
 
         break;
     };
-
-    std::cout << std::endl << "Finish" << std::endl;
 
     delete menu;
 

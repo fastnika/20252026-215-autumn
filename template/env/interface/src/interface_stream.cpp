@@ -12,26 +12,34 @@
 
 InterfaceStream::InterfaceStream() : in_stream(&std::cin)
 {
-
+    DEBUG_LOGGING("Init interface stream with stream cin");
 }
 
 InterfaceStream::InterfaceStream(std::istream* stream)
 {
+    DEBUG_LOGGING("Init interface stream with exist stream");
+    
     set(stream);
 }
 
 InterfaceStream::InterfaceStream(std::string path)
 {
+    DEBUG_LOGGING("Init interface stream with path " << path);
+    
     set(path);
 }
 
 InterfaceStream::~InterfaceStream()
 {
+    DEBUG_LOGGING("Destroy stream");
+
     clear();
 }
 
 void InterfaceStream::clear()
 {
+    DEBUG_LOGGING("Clear stream");
+    
     if (this->in_stream != &std::cin)
     {
         static_cast<std::ifstream*>(this->in_stream)->close();
@@ -43,6 +51,8 @@ void InterfaceStream::clear()
 
 void InterfaceStream::set(std::string path)
 {
+    DEBUG_LOGGING("Set path stream " << path);
+    
     // Формирование нового stream
     std::ifstream* stream = new std::ifstream();
     stream->open(path.c_str());
@@ -62,11 +72,15 @@ void InterfaceStream::set(std::string path)
 
 void InterfaceStream::set(std::istream* stream)
 {
+    DEBUG_LOGGING("Set stream");
+    
     this->in_stream = stream;
 }
 
 int InterfaceStream::read()
 {
+    DEBUG_LOGGING("Read interface command");
+    
     int choice;
     *(this->in_stream) >> choice;
     if (this->in_stream->fail())

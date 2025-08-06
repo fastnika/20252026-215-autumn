@@ -1,17 +1,17 @@
 /*!
     \file interface.cpp
-    \author Фамилия И.О.
-    \date 1 Января 2025
-    \brief Заголовочный файл-образец с описанием методов интерфейса
+    \author Р¤Р°РјРёР»РёСЏ Р.Рћ.
+    \date 1 РЇРЅРІР°СЂСЏ 2025
+    \brief Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р»-РѕР±СЂР°Р·РµС† СЃ РѕРїРёСЃР°РЅРёРµРј РјРµС‚РѕРґРѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
 
-    Примечание: Данный файл является шаблоном-образцом для редактирования
+    РџСЂРёРјРµС‡Р°РЅРёРµ: Р”Р°РЅРЅС‹Р№ С„Р°Р№Р» СЏРІР»СЏРµС‚СЃСЏ С€Р°Р±Р»РѕРЅРѕРј-РѕР±СЂР°Р·С†РѕРј РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
 */
 
 #include "interface.h"
 #include "resource.h"
 
 /*!
-    Список доступных пользовательских команд для ввода
+    РЎРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РєРѕРјР°РЅРґ РґР»СЏ РІРІРѕРґР°
 */
 CommandInformation CommandInfo[] =
 {
@@ -24,28 +24,41 @@ CommandInformation CommandInfo[] =
 
 Interface::Interface() : stream(new InterfaceStream())
 {
-
+    DEBUG_LOGGING("Init interface");
 }
 
 Interface::Interface(InterfaceStream* i_stream) : stream(i_stream)
 {
-
+    DEBUG_LOGGING("Init interface with stream");
 }
 
 Interface::~Interface()
 {
+    DEBUG_LOGGING("Destroy interface");
+    
+    // РћРїРѕРІРµС‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рѕ СЂР°Р±РѕС‚Рµ СЃ РёРЅС‚РµСЂС„РµР№СЃРѕРј
+    leave();
+
     delete stream;
 }
 
 void Interface::set(std::string path)
 {
-    stream->set(path);
-
-    std::cout << "SELFTEST mode activate";
+    DEBUG_LOGGING("Set stream path " << path);
+    try
+    {
+        stream->set(path);
+    }
+    catch (InterfaceStreamException &ex)
+    {
+        throw new InterfaceException(ex.res(), ex.msg());
+    }
 }
 
 void Interface::show()
 {
+    DEBUG_LOGGING("Show menu");
+    
     std::cout << std::endl << "Available commands:" << std::endl;
     for each (CommandInformation item in CommandInfo)
     {
@@ -53,14 +66,30 @@ void Interface::show()
     }    
 }
 
+void Interface::invite()
+{
+    DEBUG_LOGGING("Invite input");
+    
+    std::cout << std::endl << "Enter command: ";
+}
+
+void Interface::leave()
+{
+    DEBUG_LOGGING("Leave interface");
+    
+    std::cout << std::endl << "Finish" << std::endl;
+}
+
 int Interface::read()
 {
+    DEBUG_LOGGING("Read interface command");
+    
     try
     {
         int cur_command_ID = stream->read();
         bool is_valid = false;
 
-        // Поиск считанной команды среди ранее известных для определения корректности
+        // РџРѕРёСЃРє СЃС‡РёС‚Р°РЅРЅРѕР№ РєРѕРјР°РЅРґС‹ СЃСЂРµРґРё СЂР°РЅРµРµ РёР·РІРµСЃС‚РЅС‹С… РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё
         for each (CommandInformation item in CommandInfo)
         {
             if (cur_command_ID == item.ID)
@@ -74,10 +103,9 @@ int Interface::read()
     }
     catch (InterfaceStreamException ex)
     {
-        // TODO Добавить в CMakeLists.txt конфигурацию Debug и Release (флаг -g для Debug)
-//#ifdef DEBUG
+#ifdef DEBUG_MODE
         ERR_LOGGING(ex.res(), ex.msg());
-//#endif
+#endif
         return INTERFACE_COMMAND_INVALID;
     }
 }

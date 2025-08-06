@@ -2,12 +2,7 @@
      \file my_class.cpp
      \author Фамилия И.О.
      \date 1 Января 2025
-     \brief Заголовочный файл-образец с описанием реализуемых методов класса
-
-     Данный файл содержит в себе описание прототипов реализуемых функций,
-     которые демонстрируют решение следующих задач:
-     - Задача 1: Здесь приводится описание Задачи 1
-     - Задача 2: Здесь приводится описание Задачи 2
+     \brief Заголовочный файл-образец с описанием реализуемых методов базового класса
 
      Примечание: Данный файл является шаблоном-образцом для редактирования
 */
@@ -17,16 +12,18 @@
 
 MyClass::MyClass() : example_internal_var(0), example_external_var(0)
 {
-
+    DEBUG_LOGGING("Init MyClass");
 }
 
 MyClass::~MyClass()
 {
-
+    DEBUG_LOGGING("Destroy MyClass");
 }
 
 void MyClass::example_internal_func(void)
 {
+    DEBUG_LOGGING("Run example_internal_func");
+    
     // Пример реализации функции (демонстрация доступа к внутренним и внешним данным)
     
     example_internal_var++;
@@ -37,6 +34,8 @@ void MyClass::example_internal_func(void)
 
 int MyClass::example_external_func(int example_in_var, int* example_out_var)
 {
+    DEBUG_LOGGING("Run example_external_func");
+    
     if (example_out_var == NULL)
         throw new MyClassException(CODE_INCORRECT_CALCULATION, "Invalid pointer for data");
     
