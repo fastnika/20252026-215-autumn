@@ -60,10 +60,10 @@ void Interface::show()
     DEBUG_LOGGING("Show menu");
     
     std::cout << std::endl << "Available commands:" << std::endl;
-    for each (CommandInformation item in CommandInfo)
+    for (CommandInformation item : CommandInfo)
     {
         std::cout <<  item.ID << ". " << item.description << std::endl;
-    }    
+    }
 }
 
 void Interface::invite()
@@ -90,7 +90,7 @@ int Interface::read()
         bool is_valid = false;
 
         // Поиск считанной команды среди ранее известных для определения корректности
-        for each (CommandInformation item in CommandInfo)
+        for (CommandInformation item : CommandInfo)
         {
             if (cur_command_ID == item.ID)
             {
@@ -101,7 +101,7 @@ int Interface::read()
 
         return (is_valid) ? cur_command_ID : INTERFACE_COMMAND_BREAK;
     }
-    catch (InterfaceStreamException ex)
+    catch (InterfaceStreamException &ex)
     {
 #ifdef DEBUG_MODE
         ERR_LOGGING(ex.res(), ex.msg());

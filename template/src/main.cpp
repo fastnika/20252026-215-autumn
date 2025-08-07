@@ -10,7 +10,7 @@
 #include "interface.h"
 #include "resource.h"
 
-int main(int argc, char* argv[])
+int main(int argc, [[maybe_unused]] char* argv[])
 {
     DEBUG_LOGGING("Run DEBUG MODE");
     

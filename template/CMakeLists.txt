@@ -8,13 +8,18 @@
 # - Список доступных генераторов проекта (символом * указан генератор по умолчанию)
 # $ cmake -G
 #
-# - Сборка с генератором по умолчанию в директорию out из директории расположения CMakeLists.txt
+# - Сборка с генератором по умолчанию в директорию out из директории расположения CMakeLists.txt в конфигурации Debug
 #    по умолчанию в CMake для ОС Linux используется генератор - "Unix Makefiles"
-#    по умолчанию в CMake для ОС Windows - "MinGW Makefiles", в случае установки IDE Visual Studio 2022 - "Visual Studio 17 2022"
-# $ cmake -B out .
+#    по умолчанию в CMake для ОС Windows - "MinGW Makefiles", в случае наличия IDE Visual Studio 2022 - "Visual Studio 17 2022"
+# $ cmake -B out -DCMAKE_BUILD_TYPE=Debug .
+#
+# - Сборка с генератором по умолчанию в директорию out из директории расположения CMakeLists.txt в конфигурации Release
+#    конфигурация Debug служит для отладки программного обеспечения
+#    конфигурация Release служит для формирования финального программного обеспечения
+# $ cmake -B out -DCMAKE_BUILD_TYPE=Release .
 #
 # - Сборка с генереатором для IDE Visual Studio 2022 для ОС Windows в директорию out из директории расположения CMakeLists.txt
-# $ cmake -G "Visual Studio 17 2022" -B out .
+# $ cmake -G "Visual Studio 17 2022" -B out -DCMAKE_BUILD_TYPE=Debug .
 #
 # Примечание по сборке проекта:
 # 
@@ -28,7 +33,7 @@
 # Примечание по комбинированным командам
 #
 # - Формирование и сборка проекта с генератором по умолчанию в директории out
-# $ cmake -B out . && cmake --build out
+# $ if [-d out]; then rm -r out; fi && cmake -B out -DCMAKE_BUILD_TYPE=Debug . && cmake --build out
 
 
 # Минимальная версия CMake для исполнения данного скрипта
@@ -124,6 +129,8 @@ else()
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG_MODE")
 		target_compile_options(${APPNAME_LIB_EXCEPTION} PRIVATE -g -O0)
 		target_compile_options(${APPNAME_LIB_INTERFACE} PRIVATE -g -O0)
+		target_compile_options(${APPNAME_LIB_IMPLEMENTATION} PRIVATE -g --coverage -O0)
+		target_link_libraries(${APPNAME_LIB_IMPLEMENTATION} PRIVATE gcov)
 		target_compile_options(${APPNAME_SELFTEST} PRIVATE -g --coverage -O0)
 		target_link_libraries(${APPNAME_SELFTEST} PRIVATE gcov)
 		target_compile_options(${APPNAME} PRIVATE -g -O0)
@@ -131,11 +138,14 @@ else()
 		message(STATUS "Configuring for Release build.")
 		target_compile_options(${APPNAME_LIB_EXCEPTION} PRIVATE -O0)
 		target_compile_options(${APPNAME_LIB_INTERFACE} PRIVATE -O0)
+		target_compile_options(${APPNAME_LIB_IMPLEMENTATION} PRIVATE --coverage -O0)
+		target_link_libraries(${APPNAME_LIB_IMPLEMENTATION} PRIVATE gcov)
 		target_compile_options(${APPNAME_SELFTEST} PRIVATE --coverage -O0)
 		target_link_libraries(${APPNAME_SELFTEST} PRIVATE gcov)
 		target_compile_options(${APPNAME} PRIVATE -O0)
 	else()
-		message(FATAL_ERROR "CMAKE_BUILD_TYPE is set to: ${CMAKE_BUILD_TYPE} (use -DCMAKE_BUILD_TYPE=Debug or -DCMAKE_BUILD_TYPE=Release)")
+		message(FATAL_ERROR	"Now CMAKE_BUILD_TYPE is set to: ${CMAKE_BUILD_TYPE}\n"
+					"Use -DCMAKE_BUILD_TYPE=Debug or -DCMAKE_BUILD_TYPE=Release")
 	endif()
 endif()
 
