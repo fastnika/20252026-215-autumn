@@ -75,7 +75,7 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/env/interface/inc # Заголовочные файлы реализации для работы интерфейса
 	${PROJECT_SOURCE_DIR}/env/exception/inc # Заголовочные файлы реализации для работы с исключениями
 	${PROJECT_SOURCE_DIR}/env/resource/inc  # Заголовочные файлы реализации описываемых кодов ошибок
-	${PROJECT_SOURCE_DIR}/env/task/inc      # Заголовочные файлы реализации производных классов
+	${PROJECT_SOURCE_DIR}/env/implement/inc # Заголовочные файлы реализации производных классов
 )
 
 # Формирование статической библиотеки для работы с исключениями
@@ -94,7 +94,7 @@ target_link_libraries(${APPNAME_LIB_INTERFACE} PRIVATE ${APPNAME_LIB_EXCEPTION})
 
 # Формирование статической библиотеки для работы с реализацией классов
 add_library(${APPNAME_LIB_IMPLEMENTATION} STATIC
-	${PROJECT_SOURCE_DIR}/env/task/src/my_class.cpp
+	${PROJECT_SOURCE_DIR}/env/implement/src/my_class.cpp
 )
 
 # Указание для библиотеки интерфейса использования библиотеки для работы с исключениями
