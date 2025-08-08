@@ -9,13 +9,16 @@
 
 #include "interface.h"
 #include "resource.h"
+#include "my_class.h"
+#include <vector>
 
 int main(int argc, [[maybe_unused]] char* argv[])
 {
     DEBUG_LOGGING("Run DEBUG MODE");
     
     Interface* menu = new Interface();
-
+    std::vector<MyClass> impl;
+    
     //
     // Инициализация интерфейса
     //
@@ -61,9 +64,11 @@ int main(int argc, [[maybe_unused]] char* argv[])
         {
         case INTERFACE_COMMAND_1:
             DEBUG_LOGGING("Run Command_1");
+            impl.push_back(MyClass());
             continue;
         case INTERFACE_COMMAND_2:
             DEBUG_LOGGING("Run Command_2");
+            if (!impl.empty()) impl.pop_back();
             continue;
         case INTERFACE_COMMAND_3:
             DEBUG_LOGGING("Run Command_3");
@@ -76,6 +81,7 @@ int main(int argc, [[maybe_unused]] char* argv[])
         case INTERFACE_COMMAND_INVALID:
 #ifdef SELFTEST
             ERR_LOGGING(CODE_SELFTEST_ERROR, "Invalid input selftest");
+            if (!impl.empty()) impl.clear();
             delete menu;
             return CODE_SELFTEST_ERROR;
 #else
@@ -87,6 +93,8 @@ int main(int argc, [[maybe_unused]] char* argv[])
         break;
     };
 
+    // Завершение работы 
+    if (!impl.empty()) impl.clear();
     delete menu;
 
     return CODE_NO_ERROR;
