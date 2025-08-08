@@ -8,6 +8,7 @@
 BUILDDIR=out
 # Конфигурация построения
 BUILDCONFIG=Debug
+#BUILDCONFIG=Release
 
 #
 # Команды скрипта
