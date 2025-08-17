@@ -56,56 +56,79 @@ int main(int argc, [[maybe_unused]] char* argv[])
     //
     while (true)
     {
+        try
+        {
 #ifndef SELFTEST
-        menu->show();
-        menu->invite();
+            menu->show();
+            menu->invite();
 #endif
         switch (menu->read())
         {
         case INTERFACE_COMMAND_1:
+        {
             DEBUG_LOGGING("Run Command_1");
             impl.push_back(MyClass());
             continue;
+        }
         case INTERFACE_COMMAND_2:
+        {
             DEBUG_LOGGING("Run Command_2");
             if (!impl.empty()) impl.pop_back();
             continue;
+        }
         case INTERFACE_COMMAND_3:
+        {
             DEBUG_LOGGING("Run Command_3");
-	    try
-	    {
-		// Считывание дополнительных данных
-		int data_i = menu->read_ex<int>();
-		double data_d = menu->read_ex<double>();
-		std::string data_s = menu->read_ex<std::string>();
-		
-		// Вывод считанных данных пользователю
-		LOGGING(data_i << "\t" << data_d << "\t" << data_s);
-	    }
-	    catch (InterfaceException& ex)
-	    {
-#ifdef SELFTEST
-		ERR_LOGGING(CODE_SELFTEST_ERROR, "Invalid input selftest");
-        	if (!impl.empty()) impl.clear();
-        	delete menu;
-        	return CODE_SELFTEST_ERROR;
-#else
-		ERR_LOGGING(ex.res(), ex.msg());
-#endif
-	    }
+
+            // Считывание дополнительных данных
+            int data_i = menu->read_ex<int>();
+            double data_d = menu->read_ex<double>();
+            std::string data_s = menu->read_ex<std::string>();
+
+            // Вывод считанных данных
+            LOGGING(data_i << "\t" << data_d << "\t" << data_s);
+
+            // Пример работы с экземпляром собственного класса MyClass
+            if (!impl.empty())
+            {
+                int counter = 1;
+                impl.back().example_external_func(counter, &counter);
+            }
+
             continue;
+        }
         case INTERFACE_COMMAND_EXIT:
+        {
             DEBUG_LOGGING("Run Command_Exit");
             break;
+        }
         case INTERFACE_COMMAND_BREAK:
         case INTERFACE_COMMAND_INVALID:
+            DEBUG_LOGGING("Run Invalid_Command");
+            new InterfaceException(CODE_INCORRECT_CONFIGURATION, "Invalid command input");
+        }
+        }
+        catch (InterfaceException& ex)
+        {
 #ifdef SELFTEST
             ERR_LOGGING(CODE_SELFTEST_ERROR, "Invalid input selftest");
             if (!impl.empty()) impl.clear();
             delete menu;
             return CODE_SELFTEST_ERROR;
 #else
-            DEBUG_LOGGING("Invalid input");
+            ERR_LOGGING(ex.res(), ex.msg());
+            continue;
+#endif
+        }
+        catch (MyClassException& ex)
+        {
+#ifdef SELFTEST
+            ERR_LOGGING(CODE_SELFTEST_ERROR, ex.msg());
+            if (!impl.empty()) impl.clear();
+            delete menu;
+            return CODE_SELFTEST_ERROR;
+#else
+            ERR_LOGGING(ex.res(), ex.msg());
             continue;
 #endif
         }
