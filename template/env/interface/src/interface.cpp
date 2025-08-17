@@ -109,3 +109,22 @@ int Interface::read()
         return INTERFACE_COMMAND_INVALID;
     }
 }
+
+template<typename T> T Interface::read_ex()
+{
+    DEBUG_LOGGING("Read typed data");
+
+    try
+    {
+	return stream->read_ex<T>();
+    }
+    catch (InterfaceStreamException &ex)
+    {
+	throw new InterfaceException(ex.res(), ex.msg());
+    }
+}
+
+// Список возможных вариантов вызова
+template int Interface::read_ex();
+template double Interface::read_ex();
+template std::string Interface::read_ex();

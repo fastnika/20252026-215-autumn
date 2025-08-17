@@ -93,3 +93,25 @@ int InterfaceStream::read()
     
     return choice;
 }
+
+template<typename T> T InterfaceStream::read_ex()
+{
+    DEBUG_LOGGING("Read stream typed data");
+    
+    T data;
+    *(this->in_stream) >> data;
+    if (this->in_stream->fail())
+    {
+        this->in_stream->clear(); // Сброс состояния ошибки
+        this->in_stream->ignore(); // Очищение буфера
+        throw new InterfaceStreamException(CODE_INCORRECT_ADV_DATA, "Invalid input");
+    }
+    this->in_stream->ignore(); // Убирание лишних символов
+    
+    return data;
+}
+
+// Список возможных вариантов вызова
+template int InterfaceStream::read_ex();
+template double InterfaceStream::read_ex();
+template std::string InterfaceStream::read_ex();

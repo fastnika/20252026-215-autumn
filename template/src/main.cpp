@@ -72,8 +72,28 @@ int main(int argc, [[maybe_unused]] char* argv[])
             continue;
         case INTERFACE_COMMAND_3:
             DEBUG_LOGGING("Run Command_3");
-            // TODO : Считывание дополнительных данных, например - вещественных
-	        continue;
+	    try
+	    {
+		// Считывание дополнительных данных
+		int data_i = menu->read_ex<int>();
+		double data_d = menu->read_ex<double>();
+		std::string data_s = menu->read_ex<std::string>();
+		
+		// Вывод считанных данных пользователю
+		LOGGING(data_i << "\t" << data_d << "\t" << data_s);
+	    }
+	    catch (InterfaceException& ex)
+	    {
+#ifdef SELFTEST
+		ERR_LOGGING(CODE_SELFTEST_ERROR, "Invalid input selftest");
+        	if (!impl.empty()) impl.clear();
+        	delete menu;
+        	return CODE_SELFTEST_ERROR;
+#else
+		ERR_LOGGING(ex.res(), ex.msg());
+#endif
+	    }
+            continue;
         case INTERFACE_COMMAND_EXIT:
             DEBUG_LOGGING("Run Command_Exit");
             break;
