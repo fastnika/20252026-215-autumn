@@ -37,7 +37,7 @@ int MyClass::example_external_func(int example_in_var, int* example_out_var)
     DEBUG_LOGGING("Run example_external_func");
     
     if (example_out_var == NULL)
-        throw new MyClassException(CODE_INCORRECT_CALCULATION, "Invalid pointer for data");
+        throw MyClassException(CODE_INCORRECT_CALCULATION, "Invalid pointer for data");
     
     // Пример реализации функции (демонстрация возвращения внешнего аргумента и вычисленного значения)
     *example_out_var = example_internal_var;

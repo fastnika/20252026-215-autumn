@@ -59,7 +59,7 @@ void InterfaceStream::set(std::string path)
     if (!stream->is_open())
     {
         delete stream;
-        throw new InterfaceStreamException(CODE_INCORRECT_INPUT_FILE, "No input file");
+        throw InterfaceStreamException(CODE_INCORRECT_INPUT_FILE, "No input file");
     }
     
     // Предварительная очистка 
@@ -87,7 +87,7 @@ int InterfaceStream::read()
     {
         this->in_stream->clear(); // Сброс состояния ошибки
         this->in_stream->ignore(); // Очищение буфера
-        throw new InterfaceStreamException(CODE_INCORRECT_CONFIGURATION, "Invalid input");
+        throw InterfaceStreamException(CODE_INCORRECT_CONFIGURATION, "Invalid input");
     }
     this->in_stream->ignore(); // Убирание лишних символов
     
@@ -104,7 +104,7 @@ template<typename T> T InterfaceStream::read_ex()
     {
         this->in_stream->clear(); // Сброс состояния ошибки
         this->in_stream->ignore(); // Очищение буфера
-        throw new InterfaceStreamException(CODE_INCORRECT_ADV_DATA, "Invalid input");
+        throw InterfaceStreamException(CODE_INCORRECT_ADV_DATA, "Invalid input");
     }
     this->in_stream->ignore(); // Убирание лишних символов
     

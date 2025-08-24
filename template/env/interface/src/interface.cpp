@@ -51,7 +51,7 @@ void Interface::set(std::string path)
     }
     catch (InterfaceStreamException &ex)
     {
-        throw new InterfaceException(ex.res(), ex.msg());
+        throw InterfaceException(ex.res(), ex.msg());
     }
 }
 
@@ -120,7 +120,7 @@ template<typename T> T Interface::read_ex()
     }
     catch (InterfaceStreamException &ex)
     {
-	throw new InterfaceException(ex.res(), ex.msg());
+	throw InterfaceException(ex.res(), ex.msg());
     }
 }
 
