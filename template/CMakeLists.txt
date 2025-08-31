@@ -57,10 +57,11 @@ set(APPNAME_TEST_PREFIX ${PROJECT_NAME}_test_scenario)
 set(APPNAME_SELFTEST_ENV ${APPNAME_SELFTEST}_prepare_env)
 
 # Выставление локальной переменной OUTPUT_DIR для выставления выходной директории
+# с указанием невозможности автоматического использования поддиреткорий (последовательность символов $<0:>)
 set(OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/$<0:>)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/$<0:>)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/$<0:>)
 
 if(MSVC)
 	# Выставления для IDE Visual Studio ОС Windows с использованием CLang
@@ -214,7 +215,7 @@ endforeach()
 # Указание для самотестирования запуска 
 add_custom_command(TARGET ${APPNAME_SELFTEST} POST_BUILD
     COMMENT "RUN CTEST"
-    COMMAND ${CMAKE_CTEST_COMMAND} --verbose --output-on-failure
+    COMMAND ${CMAKE_CTEST_COMMAND} -C $<CONFIG> --verbose --output-on-failure
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
