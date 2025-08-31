@@ -124,7 +124,16 @@ target_link_libraries(${APPNAME_SELFTEST} PRIVATE ${APPNAME_LIB_INTERFACE} ${APP
 # Указание для исполняемого файла самотестирования определения макропеременной SELFTEST
 target_compile_definitions(${APPNAME_SELFTEST} PRIVATE -DSELFTEST)
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set_target_properties(${APPNAME_LIB_INTERFACE} PROPERTIES FOLDER "Lib")
+set_target_properties(${APPNAME_LIB_EXCEPTION} PROPERTIES FOLDER "Lib")
+set_target_properties(${APPNAME_LIB_IMPLEMENTATION} PROPERTIES FOLDER "Lib")
+set_target_properties(${APPNAME} PROPERTIES FOLDER "App")
+set_target_properties(${APPNAME_SELFTEST} PROPERTIES FOLDER "App")
+
+
 # Выставление инструментария покрытия кода
+
 if(MSVC)
 	# Выставления для IDE Visual Studio ОС Windows с использованием CLang
 else()
@@ -169,6 +178,8 @@ foreach(ITEM_SRC_TEST_SCENARIO IN LISTS LIST_SRC_TEST_SCENARIO)
 endforeach()
 
 add_custom_target(${APPNAME_SELFTEST_ENV} ALL DEPENDS ${LIST_DST_TEST_SCENARIO} )
+set_target_properties(${APPNAME_SELFTEST_ENV} PROPERTIES FOLDER "Util")
+
 
 # Предварительная очистка окружения от ранее сформированного инструментария покрытия кода 
 if(MSVC)
