@@ -23,5 +23,8 @@ if [[ -d $BUILDDIR ]]; then rm -r $BUILDDIR; fi
 # Формирование проекта
 cmake -B $BUILDDIR -DCMAKE_BUILD_TYPE=$BUILDCONFIG .
 
+# Формирование проекта c CodeJump CTAGS
+#cmake -B $BUILDDIR -DCMAKE_BUILD_TYPE=$BUILDCONFIG -DENABLING_CTAGS=1 .
+
 # Построение проекта
 cmake --build $BUILDDIR

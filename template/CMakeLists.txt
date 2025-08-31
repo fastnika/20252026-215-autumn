@@ -82,7 +82,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 # Указание расположения используемых заголовочных файлов
-include_directories(
+set(INPUT_INC_DIR
 	${PROJECT_SOURCE_DIR}/env/interface/inc # Заголовочные файлы реализации для работы интерфейса
 	${PROJECT_SOURCE_DIR}/env/exception/inc # Заголовочные файлы реализации для работы с исключениями
 	${PROJECT_SOURCE_DIR}/env/resource/inc  # Заголовочные файлы реализации описываемых кодов ошибок
@@ -94,6 +94,9 @@ add_executable(${APPNAME}
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 
+# Указание для исполняемого файла программы используемых заголовочных файлов
+target_include_directories(${APPNAME} PUBLIC ${INPUT_INC_DIR})
+
 # Указание для исполняемого файла программы библиотеки интерфейса и библиотеки реализации классов
 target_link_libraries(${APPNAME} PRIVATE ${APPNAME_LIB_INTERFACE} ${APPNAME_LIB_IMPLEMENTATION})
 
@@ -101,6 +104,9 @@ target_link_libraries(${APPNAME} PRIVATE ${APPNAME_LIB_INTERFACE} ${APPNAME_LIB_
 add_executable(${APPNAME_SELFTEST}
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
+
+# Указание для исполняемого файла программы используемых заголовочных файлов
+target_include_directories(${APPNAME_SELFTEST} PUBLIC ${INPUT_INC_DIR})
 
 # Указание для исполняемого файла самотестирования программы библиотеки интерфейса и библиотеки реализации классов
 target_link_libraries(${APPNAME_SELFTEST} PRIVATE ${APPNAME_LIB_INTERFACE} ${APPNAME_LIB_IMPLEMENTATION})
@@ -230,4 +236,25 @@ else()
 		COMMAND bash -c 'for f in $$\(find ${PROJECT_SOURCE_DIR} -type f -name \*.cpp -exec basename \{\}.gcov \\\;\)\; do if [ -e $$f ]; then echo CHECK COVERAGE $$f\; grep -C5 \"\#\#\#\#\#\" $$f\; fi\; done'
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)
+endif()
+
+# Добавление CTAGS для работы с CodeJump (автоматизированных переходов) в Midnight Commander
+# Внимание: при использовании данной опции на машине должен быть установлен инструментарий ctags
+# Инструкция по установке: sudo apt-get install universal-ctags
+# Инструкция по использованию в Midnight Commander
+# Перейти курсором на слово на идентификатор для определения
+# "Alt" + "Enter" 	Показать доступные определения для идентификатора
+# "Alt" + "+"		Перейти вперед по определению идентификатора
+# "Alt" + "-"		Перейти назад по определению идентификатора
+if(NOT MSVC AND ENABLING_CTAGS)
+    # Указание команды для сбора СTAGS с указанием формирования в ${CMAKE_SOURCE_DIR}/CTAGS
+    add_custom_command(
+	OUTPUT ${CMAKE_SOURCE_DIR}/CTAGS
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+	COMMAND ctags -R --c-kinds=+lzp --fields=+iaS --exclude=${CMAKE_BINARY_DIR} --extras=+q -e .
+    )
+
+    # Добавление зависимостей для проектов
+    add_custom_target(generate_ctags ALL DEPENDS ${CMAKE_SOURCE_DIR}/CTAGS)
+    add_dependencies(${APPNAME} generate_ctags)
 endif()
