@@ -18,7 +18,7 @@ BUILDCONFIG=Debug
 set -eu
 
 # Очистка директории построения при наличии
-if [-d $BUILDDIR]; then rm -r $BUILDDIR; fi
+if [[ -d $BUILDDIR ]]; then rm -r $BUILDDIR; fi
 
 # Формирование проекта
 cmake -B $BUILDDIR -DCMAKE_BUILD_TYPE=$BUILDCONFIG .
