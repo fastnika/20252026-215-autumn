@@ -129,6 +129,8 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/env/interface)
 
 # Выставление инструментария покрытия кода
 if(MSVC)
+	# Указание для ОС Windows возможности использования unsafe functions языка Си
+	# add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 	# Выставления для IDE Visual Studio ОС Windows с использованием CLang
 else()
 	# Выставления для ОС Linux с использованием флагов G++
