@@ -235,7 +235,7 @@ else()
     add_custom_command(
 		TARGET ${APPNAME_SELFTEST} POST_BUILD
 		COMMENT "CHECK COVERAGE"
-		COMMAND bash -c 'for f in $$\(find ${PROJECT_SOURCE_DIR} -type f -name \*.cpp -exec basename \{\}.gcov \\\;\)\; do if [ -e $$f ]; then echo CHECK COVERAGE $$f\; grep -C5 \"\#\#\#\#\#\" $$f\; fi\; done'
+		COMMAND bash -c 'for f in $$\(find ${PROJECT_SOURCE_DIR} -type f -name \*.cpp -exec basename \{\}.gcov \\\;\)\; do if [ -e $$f ]; then echo CHECK COVERAGE $$f\; grep -C5 \"\#\#\#\#\#\" $$f || true \; fi\; done'
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)
 endif()
