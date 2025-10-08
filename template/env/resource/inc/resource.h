@@ -19,10 +19,10 @@
     \param[in] msg Пояснение ошибки
 */
 #define ERR_LOGGING(code,msg) \
-    std::cerr << std::endl << std::endl << "Error:\t" << msg << std::endl; \
+    std::cerr << std::endl << "\033[41m" << std::endl << "Error:\t" << msg << std::endl; \
     std::cerr << "Code:\t" << std::hex << std::showbase << std::setw(8) << std::setfill('0') << code << std::endl; \
     std::cerr << "File:\t" << __FILE__ << std::endl; \
-    std::cerr << "Line:\t" << __LINE__ << std::endl;
+    std::cerr << "Line:\t" << std::dec << __LINE__ << "\033[0m" << std::endl;
 
 /*!
     Макрофункция-обработчик отладочного логгирования
@@ -31,9 +31,10 @@
     Примечание: макрофункция определена только в отладочном режиме (включена только в конфигурации Debug)
 */
 #ifdef DEBUG_MODE
-#define DEBUG_LOGGING(msg) std::cout << __FILE__ << ":" << __LINE__ << "\t" << msg << std::endl
+    #define DEBUG_LOGGING(msg) \
+	std::cout << "\033[36m" << __FILE__ << "\033[0m : \033[33m" << __LINE__ << "\033[0m\t\033[32m" << msg << "\033[0m" << std::endl
 #else
-#define DEBUG_LOGGING(msg)
+    #define DEBUG_LOGGING(msg)
 #endif
 
 /*!
