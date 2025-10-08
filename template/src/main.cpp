@@ -105,7 +105,7 @@ int main(int argc, [[maybe_unused]] char* argv[])
         case INTERFACE_COMMAND_BREAK:
         case INTERFACE_COMMAND_INVALID:
             DEBUG_LOGGING("Run Invalid_Command");
-            new InterfaceException(CODE_INCORRECT_CONFIGURATION, "Invalid command input");
+            throw InterfaceException(CODE_INCORRECT_CONFIGURATION, "Invalid command input");
         }
         }
         catch (InterfaceException& ex)
