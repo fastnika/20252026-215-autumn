@@ -185,7 +185,7 @@ add_dependencies(${APPNAME_SELFTEST} ${APPNAME_SELFTEST_ENV})
 
 # Включение инструментария самотестирования CTest и автоматизированное добавление всех сценариев тестирования 
 enable_testing()
-set(i 0)
+set(i 1)
 foreach(ITEM_DST_TEST_SCENARIO ${LIST_DST_TEST_SCENARIO})
     if(MSVC)
 		# Для ОС Windows запуск теста без инструментария valgrind
