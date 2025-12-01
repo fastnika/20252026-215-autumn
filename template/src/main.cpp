@@ -1,144 +1,162 @@
 /*!
-    \file main.cpp
-    \author Фамилия И.О.
-    \date 1 Января 2025
-    \brief Заголовочный файл-образец с описанием реализации головной функции запуска программы
-
-    Примечание: Данный файл является шаблоном-образцом для редактирования
+\file main.cpp
+\author Мусин А.Р.
+\date 1 Декабря 2025
+\brief Главная программа
 */
 
 #include "interface.h"
+#include "polygon.h"
 #include "resource.h"
-#include "my_class.h"
+#include <iostream>
+#include <fstream>
 #include <vector>
+#include <sstream>
 
-int main(int argc, [[maybe_unused]] char* argv[])
-{
-    DEBUG_LOGGING("Run DEBUG MODE");
+int main(int argc, char* argv[]) {
+    DEBUG_LOGGING("Start program");
     
-    Interface* menu = new Interface();
-    std::vector<MyClass> impl;
-    
-    //
-    // Инициализация интерфейса
-    //
+    std::vector<Polygon> polygons;
+    std::istream* input = &std::cin;
+    std::ifstream file_input;
+    bool is_interactive = true;
+
 #ifdef SELFTEST
-    DEBUG_LOGGING("Run SELFTEST MODE");
-    
-    if (argc != 2)
-    {
-        ERR_LOGGING(CODE_SELFTEST_ERROR, "SELFTEST invalid input");
-        delete menu;
+    if (argc != 2) {
         return CODE_SELFTEST_ERROR;
     }
-
-    try
-    {
-        menu->set(argv[1]);
+    
+    file_input.open(argv[1]);
+    if (!file_input.is_open()) {
+        return CODE_SELFTEST_ERROR;
     }
-    catch (InterfaceException& ex)
-    {
-        ERR_LOGGING(ex.res(), ex.msg());
-        delete menu;
-        return ex.res();
-    }
+    
+    input = &file_input;
+    is_interactive = false;
 #else
-    if (argc > 2)
-    {
-        ERR_LOGGING(CODE_INCORRECT_CONFIGURATION, "UI invalid input");
-        delete menu;
+    if (argc > 1) {
         return CODE_INCORRECT_CONFIGURATION;
     }
 #endif
 
-    //
-    // Работа с интерфейсом
-    //
-    while (true)
-    {
-        try
-        {
-#ifndef SELFTEST
-            menu->show();
-            menu->invite();
-#endif
-        switch (menu->read())
-        {
-        case INTERFACE_COMMAND_1:
-        {
-            DEBUG_LOGGING("Run Command_1");
-            impl.push_back(MyClass());
-            continue;
+    if (is_interactive) {
+        std::cout << "\n=== Polygon Distance Calculator ===" << std::endl;
+        std::cout << "Available commands:" << std::endl;
+        std::cout << "1. Create polygon" << std::endl;
+        std::cout << "2. Remove polygon" << std::endl;
+        std::cout << "3. Calculate distance" << std::endl;
+        std::cout << "4. Exit" << std::endl;
+        std::cout << "===================================\n" << std::endl;
+    }
+
+    std::string line;
+    while (true) {
+        if (is_interactive) {
+            std::cout << "Enter command: ";
+            std::cout.flush();
         }
-        case INTERFACE_COMMAND_2:
-        {
-            DEBUG_LOGGING("Run Command_2");
-            if (!impl.empty()) impl.pop_back();
-            continue;
-        }
-        case INTERFACE_COMMAND_3:
-        {
-            DEBUG_LOGGING("Run Command_3");
 
-            // Считывание дополнительных данных
-            int data_i = menu->read_ex<int>();
-            double data_d = menu->read_ex<double>();
-            std::string data_s = menu->read_ex<std::string>();
-
-            // Вывод считанных данных
-            LOGGING(data_i << "\t" << data_d << "\t" << data_s);
-
-            // Пример работы с экземпляром собственного класса MyClass
-            if (!impl.empty())
-            {
-                int counter = 1;
-                impl.back().example_external_func(counter, &counter);
-            }
-
-            continue;
-        }
-        case INTERFACE_COMMAND_EXIT:
-        {
-            DEBUG_LOGGING("Run Command_Exit");
+        if (!std::getline(*input, line)) {
             break;
         }
-        case INTERFACE_COMMAND_BREAK:
-        case INTERFACE_COMMAND_INVALID:
-            DEBUG_LOGGING("Run Invalid_Command");
-            throw InterfaceException(CODE_INCORRECT_CONFIGURATION, "Invalid command input");
-        }
-        }
-        catch (InterfaceException& ex)
-        {
-#ifdef SELFTEST
-            ERR_LOGGING(CODE_SELFTEST_ERROR, "Invalid input selftest");
-            if (!impl.empty()) impl.clear();
-            delete menu;
-            return CODE_SELFTEST_ERROR;
-#else
-            ERR_LOGGING(ex.res(), ex.msg());
+
+        if (line.empty()) continue;
+
+        int command = 0;
+        try {
+            command = std::stoi(line);
+        } catch (...) {
+            if (is_interactive) {
+                std::cout << "Invalid command. Please enter 1-4." << std::endl;
+            }
             continue;
-#endif
-        }
-        catch (MyClassException& ex)
-        {
-#ifdef SELFTEST
-            ERR_LOGGING(CODE_SELFTEST_ERROR, ex.msg());
-            if (!impl.empty()) impl.clear();
-            delete menu;
-            return CODE_SELFTEST_ERROR;
-#else
-            ERR_LOGGING(ex.res(), ex.msg());
-            continue;
-#endif
         }
 
-        break;
-    };
+        if (command == INTERFACE_COMMAND_1) {
+            if (is_interactive) {
+                std::cout << "Enter number of vertices: ";
+                std::cout.flush();
+            }
 
-    // Завершение работы 
-    if (!impl.empty()) impl.clear();
-    delete menu;
+            int n = 0;
+            if (!(*input >> n)) break;
 
+            std::vector<Point> vertices;
+            for (int i = 0; i < n; ++i) {
+                if (is_interactive) {
+                    std::cout << "Enter vertex " << (i + 1) << " (x y): ";
+                    std::cout.flush();
+                }
+
+                double x = 0, y = 0;
+                if (!(*input >> x >> y)) {
+                    return CODE_NO_ERROR;
+                }
+
+                vertices.push_back(Point(x, y));
+            }
+
+            std::getline(*input, line);
+
+            try {
+                polygons.push_back(Polygon(vertices));
+                if (is_interactive) {
+                    std::cout << "Polygon created successfully." << std::endl;
+                }
+            } catch (...) {
+                if (is_interactive) {
+                    std::cout << "Error creating polygon." << std::endl;
+                }
+            }
+
+        } else if (command == INTERFACE_COMMAND_2) {
+            if (!polygons.empty()) {
+                polygons.pop_back();
+                if (is_interactive) {
+                    std::cout << "Last polygon removed." << std::endl;
+                }
+            } else {
+                if (is_interactive) {
+                    std::cout << "No polygons to remove." << std::endl;
+                }
+            }
+
+        } else if (command == INTERFACE_COMMAND_3) {
+            if (polygons.size() >= 2) {
+                try {
+                    double dist = polygons[polygons.size()-2].Distance(polygons.back());
+                    std::cout << dist << std::endl;
+                    if (is_interactive) {
+                        std::cout << "Distance calculated." << std::endl;
+                    }
+                } catch (...) {
+                    if (is_interactive) {
+                        std::cout << "Error calculating distance." << std::endl;
+                    }
+                }
+            } else {
+                if (is_interactive) {
+                    std::cout << "Need at least 2 polygons to calculate distance." << std::endl;
+                }
+            }
+
+        } else if (command == INTERFACE_COMMAND_EXIT) {
+            if (is_interactive) {
+                std::cout << "Goodbye!" << std::endl;
+            }
+            break;
+
+        } else {
+            if (is_interactive) {
+                std::cout << "Unknown command. Please enter 1-4." << std::endl;
+            }
+        }
+    }
+
+    if (file_input.is_open()) {
+        file_input.close();
+    }
+
+    polygons.clear();
     return CODE_NO_ERROR;
 }
