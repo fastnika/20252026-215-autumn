@@ -1,22 +1,13 @@
-rem
-rem Конфигурация скрипта для OC Windows
-rem
-
-rem Выставление кодировки UTF8
-chcp 65001
-
-rem
-rem Команды скрипта для OC Windows
-rem
-
-rem Директория построения
+@echo off
+REM Конфигурация скрипта
 set BUILDDIR=out
+set BUILDCONFIG=Debug
 
-rem Очистка директории построения при наличии
-if exist %BUILDDIR% del /S /Q %BUILDDIR%
+REM Очистка директории построения при наличии
+if exist %BUILDDIR% rmdir /s /q %BUILDDIR%
 
-rem Формирование проекта
-cmake -B %BUILDDIR% .
+REM Формирование проекта
+cmake -B %BUILDDIR% -DCMAKE_BUILD_TYPE=%BUILDCONFIG%
 
-rem Построение проекта
+REM Построение проекта
 cmake --build %BUILDDIR%

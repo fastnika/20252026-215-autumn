@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -O0 CMakeFiles/Example_selftest.dir/src/main.cpp.o -o bin/Example_selftest  bin/libexception.a bin/libinterface.a bin/libimplement.a bin/libexception.a 
