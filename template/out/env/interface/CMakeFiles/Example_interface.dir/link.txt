@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libExample_interface.a CMakeFiles/Example_interface.dir/src/interface.cpp.o CMakeFiles/Example_interface.dir/src/interface_stream.cpp.o
+/usr/bin/ranlib ../../bin/libExample_interface.a

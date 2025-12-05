@@ -1,8 +1,8 @@
 /*!
-\file base_exception.h
-\author Фамилия И.О.
-\date 1 Января 2025
-\brief Класс для обработки исключений
+    \file base_exception.h
+    \author Мусин А.Р.
+    \date 1 декабря 2025
+    \brief Класс для обработки исключений
 */
 
 #pragma once

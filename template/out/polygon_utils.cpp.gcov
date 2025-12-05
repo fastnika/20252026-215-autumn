@@ -1,0 +1,38 @@
+        -:    0:Source:/home/airat/20252026-215-autumn/template/env/implement/src/polygon_utils.cpp
+        -:    0:Graph:./env/implement/CMakeFiles/Example_implementation.dir/src/polygon_utils.cpp.gcno
+        -:    0:Data:./env/implement/CMakeFiles/Example_implementation.dir/src/polygon_utils.cpp.gcda
+        -:    0:Runs:6
+        -:    1:/*!
+        -:    2:    \file polygon_utils.cpp
+        -:    3:    \author Мусин А.Р.
+        -:    4:    \date 1 Декабря 2025
+        -:    5:    \brief Реализация вспомогательных функций
+        -:    6:*/
+        -:    7:
+        -:    8:#include "polygon_utils.h"
+        -:    9:#include "segment.h"
+        -:   10:#include <cmath>
+        -:   11:#include <limits>
+        -:   12:
+        -:   13:namespace PolygonUtils {
+        -:   14:    const double EPSILON = 1e-9;
+        -:   15:    const double INF = std::numeric_limits<double>::infinity();
+        -:   16:
+      116:   17:    bool AreCollinear(const Point& p1, const Point& p2, const Point& p3, double eps) {
+      116:   18:        Point v1 = p2 - p1;
+      116:   19:        Point v2 = p3 - p1;
+      232:   20:        return std::abs(v1.Cross(v2)) < eps;
+        -:   21:    }
+        -:   22:
+      116:   23:    bool IsPointOnSegment(const Point& p, const Segment& seg, double eps) {
+      116:   24:        Point p1 = seg.GetP1();
+      116:   25:        Point p2 = seg.GetP2();
+      116:   26:        if (!AreCollinear(p1, p2, p, eps)) return false;
+       20:   27:        double min_x = std::min(p1.GetX(), p2.GetX()) - eps;
+       20:   28:        double max_x = std::max(p1.GetX(), p2.GetX()) + eps;
+       20:   29:        double min_y = std::min(p1.GetY(), p2.GetY()) - eps;
+       20:   30:        double max_y = std::max(p1.GetY(), p2.GetY()) + eps;
+      30*:   31:        return (p.GetX() >= min_x && p.GetX() <= max_x &&
+      30*:   32:                p.GetY() >= min_y && p.GetY() <= max_y);
+        -:   33:    }
+        -:   34:}

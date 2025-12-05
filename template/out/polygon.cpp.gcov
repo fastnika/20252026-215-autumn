@@ -1,0 +1,125 @@
+        -:    0:Source:/home/airat/20252026-215-autumn/template/env/implement/src/polygon.cpp
+        -:    0:Graph:./env/implement/CMakeFiles/Example_implementation.dir/src/polygon.cpp.gcno
+        -:    0:Data:./env/implement/CMakeFiles/Example_implementation.dir/src/polygon.cpp.gcda
+        -:    0:Runs:6
+        -:    1:/*!
+        -:    2:    \file polygon.cpp
+        -:    3:    \author Мусин А.Р.
+        -:    4:    \date 1 Декабря 2025
+        -:    5:    \brief Реализация методов класса Polygon
+        -:    6:*/
+        -:    7:
+        -:    8:#include "polygon.h"
+        -:    9:#include "polygon_utils.h"
+        -:   10:#include <algorithm>
+        -:   11:#include <stdexcept>
+        -:   12:
+    #####:   13:Polygon::Polygon() : is_defined_(false) {}
+        -:   14:
+       12:   15:Polygon::Polygon(const std::vector<Point>& vertices)
+       12:   16:    : vertices_(vertices), is_defined_(true) {
+      12*:   17:    if (vertices_.size() < 3) is_defined_ = false;
+       60:   18:    for (const auto& v : vertices_) {
+       48:   19:        if (!v.IsDef()) {
+    #####:   20:            is_defined_ = false;
+    #####:   21:            break;
+        -:   22:        }
+        -:   23:    }
+       12:   24:}
+        -:   25:
+    #####:   26:Point Polygon::GetVertex(size_t index) const {
+    #####:   27:    if (index >= vertices_.size()) throw std::out_of_range("Vertex index out of range");
+    #####:   28:    return vertices_[index];
+        -:   29:}
+        -:   30:
+      271:   31:Segment Polygon::GetEdge(size_t index) const {
+     271*:   32:    if (index >= vertices_.size()) throw std::out_of_range("Edge index out of range");
+      271:   33:    size_t next_index = (index + 1) % vertices_.size();
+      271:   34:    return Segment(vertices_[index], vertices_[next_index]);
+        -:   35:}
+        -:   36:
+       10:   37:double Polygon::Area() const {
+      10*:   38:    if (!is_defined_) throw std::runtime_error("Polygon is not defined");
+       10:   39:    double area = 0.0;
+       10:   40:    size_t n = vertices_.size();
+       48:   41:    for (size_t i = 0; i < n; ++i) {
+       38:   42:        size_t j = (i + 1) % n;
+       38:   43:        area += vertices_[i].GetX() * vertices_[j].GetY() -
+       38:   44:                vertices_[j].GetX() * vertices_[i].GetY();
+        -:   45:    }
+       10:   46:    return std::abs(area) / 2.0;
+        -:   47:}
+        -:   48:
+       10:   49:bool Polygon::IsDegenerate() const {
+       10:   50:    return Area() < PolygonUtils::EPSILON;
+        -:   51:}
+        -:   52:
+       30:   53:bool Polygon::Contains(const Point& p) const {
+      146:   54:    for (size_t i = 0; i < vertices_.size(); ++i) {
+      116:   55:        if (PolygonUtils::IsPointOnSegment(p, GetEdge(i), PolygonUtils::EPSILON)) {
+    #####:   56:            return true;
+        -:   57:        }
+        -:   58:    }
+        -:   59:
+       30:   60:    int count = 0;
+       30:   61:    size_t n = vertices_.size();
+      146:   62:    for (size_t i = 0; i < n; ++i) {
+      116:   63:        size_t j = (i + 1) % n;
+      116:   64:        Point v1 = vertices_[i];
+      116:   65:        Point v2 = vertices_[j];
+      116:   66:        double y1 = v1.GetY();
+      116:   67:        double y2 = v2.GetY();
+      116:   68:        double py = p.GetY();
+      116:   69:        if (std::abs(y2 - y1) < PolygonUtils::EPSILON) continue;
+       68:   70:        if ((y1 > py) != (y2 > py)) {
+       40:   71:            double x_intersect = (v2.GetX() - v1.GetX()) * (py - y1) / (y2 - y1) + v1.GetX();
+       40:   72:            if (p.GetX() < x_intersect - PolygonUtils::EPSILON) {
+       20:   73:                count++;
+        -:   74:            }
+        -:   75:        }
+        -:   76:    }
+       30:   77:    return (count % 2) == 1;
+        -:   78:}
+        -:   79:
+        5:   80:bool Polygon::Intersects(const Polygon& other) const {
+        5:   81:    if (!is_defined_ || !other.is_defined_)
+    #####:   82:        throw std::runtime_error("Polygon not defined");
+        -:   83:
+       22:   84:    for (size_t i = 0; i < vertices_.size(); ++i) {
+       18:   85:        Segment e1 = GetEdge(i);
+       80:   86:        for (size_t j = 0; j < other.vertices_.size(); ++j) {
+       63:   87:            Segment e2 = other.GetEdge(j);
+       63:   88:            if (e1.Intersects(e2)) return true;
+        -:   89:        }
+        -:   90:    }
+        -:   91:
+       18:   92:    for (size_t i = 0; i < other.vertices_.size(); ++i) {
+      14*:   93:        if (Contains(other.vertices_[i])) return true;
+        -:   94:    }
+        -:   95:
+       20:   96:    for (size_t i = 0; i < vertices_.size(); ++i) {
+      16*:   97:        if (other.Contains(vertices_[i])) return true;
+        -:   98:    }
+        -:   99:
+        4:  100:    return false;
+        -:  101:}
+        -:  102:
+        5:  103:double Polygon::Distance(const Polygon& other) const {
+       5*:  104:    if (IsDegenerate() || other.IsDegenerate())
+    #####:  105:        throw std::runtime_error("Cannot compute distance for degenerate polygons");
+        5:  106:    if (Intersects(other)) return 0.0;
+        -:  107:
+        4:  108:    double min_dist = PolygonUtils::INF;
+       20:  109:    for (size_t i = 0; i < vertices_.size(); ++i) {
+       16:  110:        Segment e1 = GetEdge(i);
+       74:  111:        for (size_t j = 0; j < other.vertices_.size(); ++j) {
+       58:  112:            Segment e2 = other.GetEdge(j);
+       58:  113:            min_dist = std::min(min_dist, e1.DistanceToSegment(e2));
+        -:  114:        }
+        -:  115:    }
+        4:  116:    return min_dist;
+        -:  117:}
+        -:  118:
+    #####:  119:int Polygon::GetVertexCount() const {
+    #####:  120:    return vertices_.size();
+        -:  121:}

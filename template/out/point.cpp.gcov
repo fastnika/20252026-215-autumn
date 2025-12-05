@@ -1,0 +1,62 @@
+        -:    0:Source:/home/airat/20252026-215-autumn/template/env/implement/src/point.cpp
+        -:    0:Graph:./env/implement/CMakeFiles/Example_implementation.dir/src/point.cpp.gcno
+        -:    0:Data:./env/implement/CMakeFiles/Example_implementation.dir/src/point.cpp.gcda
+        -:    0:Runs:6
+        -:    1:/*!
+        -:    2:    \file point.cpp
+        -:    3:    \author Мусин А.Р.
+        -:    4:    \date 1 Декабря 2025
+        -:    5:    \brief Реализация методов класса Point
+        -:    6:*/
+        -:    7:
+        -:    8:#include "point.h"
+        -:    9:#include <stdexcept>
+        -:   10:#include <cmath>
+        -:   11:
+    #####:   12:Point::Point() : x_(0), y_(0), is_defined_(false) {}
+        -:   13:
+      875:   14:Point::Point(double x, double y) : x_(x), y_(y), is_defined_(true) {}
+        -:   15:
+      346:   16:double Point::GetX() const {
+     346*:   17:    if (!is_defined_) throw std::runtime_error("Point undefined");
+      346:   18:    return x_;
+        -:   19:}
+        -:   20:
+      504:   21:double Point::GetY() const {
+     504*:   22:    if (!is_defined_) throw std::runtime_error("Point undefined");
+      504:   23:    return y_;
+        -:   24:}
+        -:   25:
+      116:   26:Point Point::operator+(const Point& other) const {
+      116:   27:    return Point(x_ + other.x_, y_ + other.y_);
+        -:   28:}
+        -:   29:
+      595:   30:Point Point::operator-(const Point& other) const {
+      595:   31:    return Point(x_ - other.x_, y_ - other.y_);
+        -:   32:}
+        -:   33:
+      116:   34:Point Point::operator*(double scalar) const {
+      116:   35:    return Point(x_ * scalar, y_ * scalar);
+        -:   36:}
+        -:   37:
+    #####:   38:Point operator*(double scalar, const Point& p) {
+    #####:   39:    return p * scalar;
+        -:   40:}
+        -:   41:
+      310:   42:double Point::Dot(const Point& other) const {
+      310:   43:    return x_ * other.x_ + y_ * other.y_;
+        -:   44:}
+        -:   45:
+      285:   46:double Point::Cross(const Point& other) const {
+      285:   47:    return x_ * other.y_ - y_ * other.x_;
+        -:   48:}
+        -:   49:
+    #####:   50:double Point::Length() const {
+    #####:   51:    return std::sqrt(x_ * x_ + y_ * y_);
+        -:   52:}
+        -:   53:
+       58:   54:double Point::Distance(const Point& other) const {
+       58:   55:    double dx = x_ - other.x_;
+       58:   56:    double dy = y_ - other.y_;
+       58:   57:    return std::sqrt(dx * dx + dy * dy);
+        -:   58:}

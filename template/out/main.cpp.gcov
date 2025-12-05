@@ -1,0 +1,166 @@
+        -:    0:Source:/home/airat/20252026-215-autumn/template/src/main.cpp
+        -:    0:Graph:./CMakeFiles/Example_selftest.dir/src/main.cpp.gcno
+        -:    0:Data:./CMakeFiles/Example_selftest.dir/src/main.cpp.gcda
+        -:    0:Runs:6
+        -:    1:/*!
+        -:    2:    \file main.cpp
+        -:    3:    \author Мусин А.Р.
+        -:    4:    \date 1 Декабря 2025
+        -:    5:    \brief Главная программа
+        -:    6:*/
+        -:    7:
+        -:    8:#include "interface.h"
+        -:    9:#include "polygon.h"
+        -:   10:#include "resource.h"
+        -:   11:#include <iostream>
+        -:   12:#include <fstream>
+        -:   13:#include <vector>
+        -:   14:#include <sstream>
+        -:   15:
+        6:   16:int main(int argc, [[maybe_unused]] char* argv[]) {
+        6:   17:    DEBUG_LOGGING("Start program");
+        -:   18:    
+        6:   19:    std::vector<Polygon> polygons;
+        6:   20:    std::istream* input = &std::cin;
+        6:   21:    std::ifstream file_input;
+        6:   22:    bool is_interactive = true;
+        -:   23:
+        -:   24:#ifdef SELFTEST
+        6:   25:    if (argc != 2) {
+    #####:   26:        return CODE_SELFTEST_ERROR;
+        -:   27:    }
+        -:   28:    
+        6:   29:    file_input.open(argv[1]);
+        6:   30:    if (!file_input.is_open()) {
+    #####:   31:        return CODE_SELFTEST_ERROR;
+        -:   32:    }
+        -:   33:    
+        6:   34:    input = &file_input;
+        6:   35:    is_interactive = false;
+        -:   36:#else
+        -:   37:    if (argc > 1) {
+        -:   38:        return CODE_INCORRECT_CONFIGURATION;
+        -:   39:    }
+        -:   40:#endif
+        -:   41:
+        6:   42:    if (is_interactive) {
+    #####:   43:        std::cout << "\n=== Polygon Distance Calculator ===" << std::endl;
+    #####:   44:        std::cout << "Available commands:" << std::endl;
+    #####:   45:        std::cout << "1. Create polygon" << std::endl;
+    #####:   46:        std::cout << "2. Remove polygon" << std::endl;
+    #####:   47:        std::cout << "3. Calculate distance" << std::endl;
+    #####:   48:        std::cout << "4. Exit" << std::endl;
+    #####:   49:        std::cout << "===================================\n" << std::endl;
+        -:   50:    }
+        -:   51:
+        6:   52:    std::string line;
+        -:   53:    while (true) {
+       29:   54:        if (is_interactive) {
+    #####:   55:            std::cout << "Enter command: ";
+    #####:   56:            std::cout.flush();
+        -:   57:        }
+        -:   58:
+       29:   59:        if (!std::getline(*input, line)) {
+        4:   60:            break;
+        -:   61:        }
+        -:   62:
+      25*:   63:        if (line.empty()) continue;
+        -:   64:
+       25:   65:        int command = 0;
+        -:   66:        try {
+       25:   67:            command = std::stoi(line);
+    =====:   68:        } catch (...) {
+    =====:   69:            if (is_interactive) {
+    =====:   70:                std::cout << "Invalid command. Please enter 1-4." << std::endl;
+        -:   71:            }
+    =====:   72:            continue;
+    =====:   73:        }
+        -:   74:
+       25:   75:        if (command == INTERFACE_COMMAND_1) {
+       12:   76:            if (is_interactive) {
+    #####:   77:                std::cout << "Enter number of vertices: ";
+    #####:   78:                std::cout.flush();
+        -:   79:            }
+        -:   80:
+       12:   81:            int n = 0;
+      12*:   82:            if (!(*input >> n)) break;
+        -:   83:
+       12:   84:            std::vector<Point> vertices;
+       60:   85:            for (int i = 0; i < n; ++i) {
+       48:   86:                if (is_interactive) {
+    #####:   87:                    std::cout << "Enter vertex " << (i + 1) << " (x y): ";
+    #####:   88:                    std::cout.flush();
+        -:   89:                }
+        -:   90:
+       48:   91:                double x = 0, y = 0;
+       48:   92:                if (!(*input >> x >> y)) {
+    #####:   93:                    return CODE_NO_ERROR;
+        -:   94:                }
+        -:   95:
+       48:   96:                vertices.push_back(Point(x, y));
+        -:   97:            }
+        -:   98:
+       12:   99:            std::getline(*input, line);
+        -:  100:
+        -:  101:            try {
+       12:  102:                polygons.push_back(Polygon(vertices));
+       12:  103:                if (is_interactive) {
+    #####:  104:                    std::cout << "Polygon created successfully." << std::endl;
+        -:  105:                }
+    =====:  106:            } catch (...) {
+    =====:  107:                if (is_interactive) {
+    =====:  108:                    std::cout << "Error creating polygon." << std::endl;
+        -:  109:                }
+    =====:  110:            }
+        -:  111:
+       25:  112:        } else if (command == INTERFACE_COMMAND_2) {
+        5:  113:            if (!polygons.empty()) {
+        5:  114:                polygons.pop_back();
+        5:  115:                if (is_interactive) {
+    #####:  116:                    std::cout << "Last polygon removed." << std::endl;
+        -:  117:                }
+        -:  118:            } else {
+    #####:  119:                if (is_interactive) {
+    #####:  120:                    std::cout << "No polygons to remove." << std::endl;
+        -:  121:                }
+        -:  122:            }
+        -:  123:
+        8:  124:        } else if (command == INTERFACE_COMMAND_3) {
+        6:  125:            if (polygons.size() >= 2) {
+        -:  126:                try {
+        5:  127:                    double dist = polygons[polygons.size()-2].Distance(polygons.back());
+        5:  128:                    std::cout << dist << std::endl;
+        5:  129:                    if (is_interactive) {
+    #####:  130:                        std::cout << "Distance calculated." << std::endl;
+        -:  131:                    }
+    =====:  132:                } catch (...) {
+    =====:  133:                    if (is_interactive) {
+    =====:  134:                        std::cout << "Error calculating distance." << std::endl;
+        -:  135:                    }
+    =====:  136:                }
+        -:  137:            } else {
+        1:  138:                if (is_interactive) {
+    #####:  139:                    std::cout << "Need at least 2 polygons to calculate distance." << std::endl;
+        -:  140:                }
+        -:  141:            }
+        -:  142:
+        2:  143:        } else if (command == INTERFACE_COMMAND_EXIT) {
+        2:  144:            if (is_interactive) {
+    #####:  145:                std::cout << "Goodbye!" << std::endl;
+        -:  146:            }
+        2:  147:            break;
+        -:  148:
+        -:  149:        } else {
+    #####:  150:            if (is_interactive) {
+    #####:  151:                std::cout << "Unknown command. Please enter 1-4." << std::endl;
+        -:  152:            }
+        -:  153:        }
+       23:  154:    }
+        -:  155:
+        6:  156:    if (file_input.is_open()) {
+        6:  157:        file_input.close();
+        -:  158:    }
+        -:  159:
+        6:  160:    polygons.clear();
+        6:  161:    return CODE_NO_ERROR;
+        6:  162:}

@@ -1,13 +1,16 @@
 /*!
-\file base_exception.cpp
-\author Мусин А.Р.
-\date 1 декабря 2025
-\brief Реализация методов класса для обработки исключения
+     \file base_exception.cpp
+     \author Мусин А.Р
+     \date 1 декабря
+     \brief Заголовочный файл-образец с описанием реализуемых методов класса для обработки исключения
 */
 
 #include "base_exception.h"
 
-BaseException::BaseException() {}
+BaseException::BaseException()
+{
+
+}
 
 BaseException::BaseException(BaseException* other)
 {
@@ -33,7 +36,10 @@ BaseException::BaseException(int code, std::string msg)
     this->message = msg;
 }
 
-BaseException::~BaseException() {}
+BaseException::~BaseException()
+{
+
+}
 
 int BaseException::res()
 {

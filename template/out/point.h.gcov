@@ -1,0 +1,113 @@
+        -:    0:Source:/home/airat/20252026-215-autumn/template/env/implement/inc/point.h
+        -:    0:Graph:./env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.gcno
+        -:    0:Data:./env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.gcda
+        -:    0:Runs:6
+        -:    1:/*!
+        -:    2:    \file point.h
+        -:    3:    \author Мусин А.Р.
+        -:    4:    \date 1 Декабря 2025
+        -:    5:    \brief Заголовочный файл с описанием класса Point
+        -:    6:*/
+        -:    7:
+        -:    8:#pragma once
+        -:    9:
+        -:   10:#include <cmath>
+        -:   11:
+        -:   12:/*!
+        -:   13:Класс для работы с двумерной точкой
+        -:   14:*/
+        -:   15:class Point {
+        -:   16:private:
+        -:   17:    double x_;
+        -:   18:    double y_;
+        -:   19:    bool is_defined_;
+        -:   20:
+        -:   21:public:
+        -:   22:    /*!
+        -:   23:    Конструктор по умолчанию (неопределённая точка)
+        -:   24:    */
+        -:   25:    Point();
+        -:   26:
+        -:   27:    /*!
+        -:   28:    Конструктор с параметрами
+        -:   29:    \param x Координата по оси X
+        -:   30:    \param y Координата по оси Y
+        -:   31:    */
+        -:   32:    Point(double x, double y);
+        -:   33:
+        -:   34:    /*!
+        -:   35:    Проверка, определена ли точка
+        -:   36:    \return true если точка определена
+        -:   37:    */
+    #####:   38:    bool IsDef() const { return is_defined_; }
+        -:   39:
+        -:   40:    /*!
+        -:   41:    Получить координату X
+        -:   42:    \return Координата X
+        -:   43:    \throw std::runtime_error если точка не определена
+        -:   44:    */
+        -:   45:    double GetX() const;
+        -:   46:
+        -:   47:    /*!
+        -:   48:    Получить координату Y
+        -:   49:    \return Координата Y
+        -:   50:    \throw std::runtime_error если точка не определена
+        -:   51:    */
+        -:   52:    double GetY() const;
+        -:   53:
+        -:   54:    /*!
+        -:   55:    Сложение двух точек (как векторов)
+        -:   56:    \param other Вторая точка
+        -:   57:    \return Новая точка - сумма координат
+        -:   58:    */
+        -:   59:    Point operator+(const Point& other) const;
+        -:   60:
+        -:   61:    /*!
+        -:   62:    Вычитание двух точек (как векторов)
+        -:   63:    \param other Вторая точка
+        -:   64:    \return Новая точка - разность координат
+        -:   65:    */
+        -:   66:    Point operator-(const Point& other) const;
+        -:   67:
+        -:   68:    /*!
+        -:   69:    Умножение точки на скаляр
+        -:   70:    \param scalar Скалярный множитель
+        -:   71:    \return Новая точка с умноженными координатами
+        -:   72:    */
+        -:   73:    Point operator*(double scalar) const;
+        -:   74:
+        -:   75:    /*!
+        -:   76:    Скалярное произведение двух векторов
+        -:   77:    \param other Вторая точка
+        -:   78:    \return Результат скалярного произведения
+        -:   79:    */
+        -:   80:    double Dot(const Point& other) const;
+        -:   81:
+        -:   82:    /*!
+        -:   83:    Векторное произведение (в 2D возвращает z-компоненту)
+        -:   84:    \param other Вторая точка
+        -:   85:    \return Z-компонента векторного произведения
+        -:   86:    */
+        -:   87:    double Cross(const Point& other) const;
+        -:   88:
+        -:   89:    /*!
+        -:   90:    Длина вектора (расстояние от начала координат)
+        -:   91:    \return Длина вектора
+        -:   92:    */
+        -:   93:    double Length() const;
+        -:   94:
+        -:   95:    /*!
+        -:   96:    Расстояние между двумя точками
+        -:   97:    \param other Вторая точка
+        -:   98:    \return Евклидово расстояние
+        -:   99:    */
+        -:  100:    double Distance(const Point& other) const;
+        -:  101:
+        -:  102:    /*!
+        -:  103:    Умножение скаляра на точку (friend функция)
+        -:  104:    \param scalar Скалярный множитель
+        -:  105:    \param p Точка
+        -:  106:    \return Новая точка с умноженными координатами
+        -:  107:    */
+        -:  108:    friend Point operator*(double scalar, const Point& p);
+        -:  109:};

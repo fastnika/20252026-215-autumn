@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../bin/libimplement.a CMakeFiles/implement.dir/src/polygon.cpp.o
-/usr/bin/ranlib ../../bin/libimplement.a

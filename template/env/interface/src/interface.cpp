@@ -1,8 +1,8 @@
 /*!
-\file interface.cpp
-\author Мусин А.Р
-\date 1 декабря 2025
-\brief Реализация методов интерфейса
+    \file interface.cpp
+    \author Мусин А.Р
+    \date 1 декабря 2025
+    \brief Реализация методов интерфейса
 */
 
 #include "interface.h"

@@ -127,25 +127,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-env/interface/CMakeFiles/interface.dir/rule:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/interface/CMakeFiles/interface.dir/rule
-.PHONY : env/interface/CMakeFiles/interface.dir/rule
+env/interface/CMakeFiles/Example_interface.dir/rule:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/interface/CMakeFiles/Example_interface.dir/rule
+.PHONY : env/interface/CMakeFiles/Example_interface.dir/rule
 
 # Convenience name for target.
-interface: env/interface/CMakeFiles/interface.dir/rule
-.PHONY : interface
+Example_interface: env/interface/CMakeFiles/Example_interface.dir/rule
+.PHONY : Example_interface
 
 # fast build rule for target.
-interface/fast:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/build
-.PHONY : interface/fast
+Example_interface/fast:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/build
+.PHONY : Example_interface/fast
 
 src/interface.o: src/interface.cpp.o
 .PHONY : src/interface.o
 
 # target to build an object file
 src/interface.cpp.o:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/src/interface.cpp.o
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/src/interface.cpp.o
 .PHONY : src/interface.cpp.o
 
 src/interface.i: src/interface.cpp.i
@@ -153,7 +153,7 @@ src/interface.i: src/interface.cpp.i
 
 # target to preprocess a source file
 src/interface.cpp.i:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/src/interface.cpp.i
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/src/interface.cpp.i
 .PHONY : src/interface.cpp.i
 
 src/interface.s: src/interface.cpp.s
@@ -161,7 +161,7 @@ src/interface.s: src/interface.cpp.s
 
 # target to generate assembly for a file
 src/interface.cpp.s:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/src/interface.cpp.s
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/src/interface.cpp.s
 .PHONY : src/interface.cpp.s
 
 src/interface_stream.o: src/interface_stream.cpp.o
@@ -169,7 +169,7 @@ src/interface_stream.o: src/interface_stream.cpp.o
 
 # target to build an object file
 src/interface_stream.cpp.o:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/src/interface_stream.cpp.o
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/src/interface_stream.cpp.o
 .PHONY : src/interface_stream.cpp.o
 
 src/interface_stream.i: src/interface_stream.cpp.i
@@ -177,7 +177,7 @@ src/interface_stream.i: src/interface_stream.cpp.i
 
 # target to preprocess a source file
 src/interface_stream.cpp.i:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/src/interface_stream.cpp.i
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/src/interface_stream.cpp.i
 .PHONY : src/interface_stream.cpp.i
 
 src/interface_stream.s: src/interface_stream.cpp.s
@@ -185,7 +185,7 @@ src/interface_stream.s: src/interface_stream.cpp.s
 
 # target to generate assembly for a file
 src/interface_stream.cpp.s:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/src/interface_stream.cpp.s
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/src/interface_stream.cpp.s
 .PHONY : src/interface_stream.cpp.s
 
 # Help Target
@@ -197,7 +197,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... interface"
+	@echo "... Example_interface"
 	@echo "... src/interface.o"
 	@echo "... src/interface.i"
 	@echo "... src/interface.s"

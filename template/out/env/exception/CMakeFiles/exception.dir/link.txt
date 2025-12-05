@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../bin/libexception.a CMakeFiles/exception.dir/src/base_exception.cpp.o
-/usr/bin/ranlib ../../bin/libexception.a

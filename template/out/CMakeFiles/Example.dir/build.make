@@ -92,10 +92,9 @@ Example_EXTERNAL_OBJECTS =
 
 bin/Example: CMakeFiles/Example.dir/src/main.cpp.o
 bin/Example: CMakeFiles/Example.dir/build.make
-bin/Example: bin/libexception.a
-bin/Example: bin/libinterface.a
-bin/Example: bin/libimplement.a
-bin/Example: bin/libexception.a
+bin/Example: bin/libExample_interface.a
+bin/Example: bin/libExample_implementation.a
+bin/Example: bin/libExample_exception.a
 bin/Example: CMakeFiles/Example.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/Example"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Example.dir/link.txt --verbose=$(VERBOSE)

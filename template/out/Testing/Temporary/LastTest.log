@@ -1,35 +1,188 @@
-Start testing: Dec 01 22:58 MSK
+Start testing: Dec 06 00:40 MSK
 ----------------------------------------------------------
-1/2 Testing: Example_test_scenario_0
-1/2 Test: Example_test_scenario_0
-Command: "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "bin/test/test_scenario_01.txt"
+1/6 Testing: Example_test_scenario_1
+1/6 Test: Example_test_scenario_1
+Command: "/usr/bin/valgrind" "--leak-check=full" "--show-leak-kinds=all" "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "/home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_01.txt"
 Directory: /home/airat/20252026-215-autumn/template/out
-"Example_test_scenario_0" start time: Dec 01 22:58 MSK
+"Example_test_scenario_1" start time: Dec 06 00:40 MSK
 Output:
 ----------------------------------------------------------
+==71566== Memcheck, a memory error detector
+==71566== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71566== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==71566== Command: /home/airat/20252026-215-autumn/template/out/bin/Example_selftest /home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_01.txt
+==71566== 
+[36m/home/airat/20252026-215-autumn/template/src/main.cpp[0m : [33m17[0m	[32mStart program[0m
 3
+==71566== 
+==71566== HEAP SUMMARY:
+==71566==     in use at exit: 0 bytes in 0 blocks
+==71566==   total heap usage: 41 allocs, 41 frees, 111,164 bytes allocated
+==71566== 
+==71566== All heap blocks were freed -- no leaks are possible
+==71566== 
+==71566== For lists of detected and suppressed errors, rerun with: -s
+==71566== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 <end of output>
-Test time =   0.01 sec
+Test time =   1.40 sec
 ----------------------------------------------------------
 Test Passed.
-"Example_test_scenario_0" end time: Dec 01 22:58 MSK
-"Example_test_scenario_0" time elapsed: 00:00:00
+"Example_test_scenario_1" end time: Dec 06 00:40 MSK
+"Example_test_scenario_1" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-2/2 Testing: Example_test_scenario_1
-2/2 Test: Example_test_scenario_1
-Command: "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "bin/test/test_scenario_02.txt"
+2/6 Testing: Example_test_scenario_2
+2/6 Test: Example_test_scenario_2
+Command: "/usr/bin/valgrind" "--leak-check=full" "--show-leak-kinds=all" "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "/home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_02.txt"
 Directory: /home/airat/20252026-215-autumn/template/out
-"Example_test_scenario_1" start time: Dec 01 22:58 MSK
+"Example_test_scenario_2" start time: Dec 06 00:40 MSK
 Output:
 ----------------------------------------------------------
+==71580== Memcheck, a memory error detector
+==71580== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71580== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==71580== Command: /home/airat/20252026-215-autumn/template/out/bin/Example_selftest /home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_02.txt
+==71580== 
+[36m/home/airat/20252026-215-autumn/template/src/main.cpp[0m : [33m17[0m	[32mStart program[0m
 0
+==71580== 
+==71580== HEAP SUMMARY:
+==71580==     in use at exit: 0 bytes in 0 blocks
+==71580==   total heap usage: 45 allocs, 45 frees, 111,440 bytes allocated
+==71580== 
+==71580== All heap blocks were freed -- no leaks are possible
+==71580== 
+==71580== For lists of detected and suppressed errors, rerun with: -s
+==71580== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 <end of output>
-Test time =   0.01 sec
+Test time =   1.14 sec
 ----------------------------------------------------------
 Test Passed.
-"Example_test_scenario_1" end time: Dec 01 22:58 MSK
-"Example_test_scenario_1" time elapsed: 00:00:00
+"Example_test_scenario_2" end time: Dec 06 00:40 MSK
+"Example_test_scenario_2" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-End testing: Dec 01 22:58 MSK
+3/6 Testing: Example_test_scenario_3
+3/6 Test: Example_test_scenario_3
+Command: "/usr/bin/valgrind" "--leak-check=full" "--show-leak-kinds=all" "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "/home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_03.txt"
+Directory: /home/airat/20252026-215-autumn/template/out
+"Example_test_scenario_3" start time: Dec 06 00:40 MSK
+Output:
+----------------------------------------------------------
+==71581== Memcheck, a memory error detector
+==71581== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71581== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==71581== Command: /home/airat/20252026-215-autumn/template/out/bin/Example_selftest /home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_03.txt
+==71581== 
+[36m/home/airat/20252026-215-autumn/template/src/main.cpp[0m : [33m17[0m	[32mStart program[0m
+1
+==71581== 
+==71581== HEAP SUMMARY:
+==71581==     in use at exit: 0 bytes in 0 blocks
+==71581==   total heap usage: 41 allocs, 41 frees, 111,164 bytes allocated
+==71581== 
+==71581== All heap blocks were freed -- no leaks are possible
+==71581== 
+==71581== For lists of detected and suppressed errors, rerun with: -s
+==71581== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+<end of output>
+Test time =   1.27 sec
+----------------------------------------------------------
+Test Passed.
+"Example_test_scenario_3" end time: Dec 06 00:40 MSK
+"Example_test_scenario_3" time elapsed: 00:00:01
+----------------------------------------------------------
+
+4/6 Testing: Example_test_scenario_4
+4/6 Test: Example_test_scenario_4
+Command: "/usr/bin/valgrind" "--leak-check=full" "--show-leak-kinds=all" "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "/home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_04.txt"
+Directory: /home/airat/20252026-215-autumn/template/out
+"Example_test_scenario_4" start time: Dec 06 00:40 MSK
+Output:
+----------------------------------------------------------
+==71595== Memcheck, a memory error detector
+==71595== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71595== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==71595== Command: /home/airat/20252026-215-autumn/template/out/bin/Example_selftest /home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_04.txt
+==71595== 
+[36m/home/airat/20252026-215-autumn/template/src/main.cpp[0m : [33m17[0m	[32mStart program[0m
+2
+==71595== 
+==71595== HEAP SUMMARY:
+==71595==     in use at exit: 0 bytes in 0 blocks
+==71595==   total heap usage: 45 allocs, 45 frees, 111,440 bytes allocated
+==71595== 
+==71595== All heap blocks were freed -- no leaks are possible
+==71595== 
+==71595== For lists of detected and suppressed errors, rerun with: -s
+==71595== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+<end of output>
+Test time =   1.22 sec
+----------------------------------------------------------
+Test Passed.
+"Example_test_scenario_4" end time: Dec 06 00:40 MSK
+"Example_test_scenario_4" time elapsed: 00:00:01
+----------------------------------------------------------
+
+5/6 Testing: Example_test_scenario_5
+5/6 Test: Example_test_scenario_5
+Command: "/usr/bin/valgrind" "--leak-check=full" "--show-leak-kinds=all" "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "/home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_05.txt"
+Directory: /home/airat/20252026-215-autumn/template/out
+"Example_test_scenario_5" start time: Dec 06 00:40 MSK
+Output:
+----------------------------------------------------------
+==71596== Memcheck, a memory error detector
+==71596== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71596== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==71596== Command: /home/airat/20252026-215-autumn/template/out/bin/Example_selftest /home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_05.txt
+==71596== 
+[36m/home/airat/20252026-215-autumn/template/src/main.cpp[0m : [33m17[0m	[32mStart program[0m
+==71596== 
+==71596== HEAP SUMMARY:
+==71596==     in use at exit: 0 bytes in 0 blocks
+==71596==   total heap usage: 50 allocs, 50 frees, 112,036 bytes allocated
+==71596== 
+==71596== All heap blocks were freed -- no leaks are possible
+==71596== 
+==71596== For lists of detected and suppressed errors, rerun with: -s
+==71596== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+<end of output>
+Test time =   1.21 sec
+----------------------------------------------------------
+Test Passed.
+"Example_test_scenario_5" end time: Dec 06 00:40 MSK
+"Example_test_scenario_5" time elapsed: 00:00:01
+----------------------------------------------------------
+
+6/6 Testing: Example_test_scenario_6
+6/6 Test: Example_test_scenario_6
+Command: "/usr/bin/valgrind" "--leak-check=full" "--show-leak-kinds=all" "/home/airat/20252026-215-autumn/template/out/bin/Example_selftest" "/home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_06.txt"
+Directory: /home/airat/20252026-215-autumn/template/out
+"Example_test_scenario_6" start time: Dec 06 00:40 MSK
+Output:
+----------------------------------------------------------
+==71610== Memcheck, a memory error detector
+==71610== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==71610== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==71610== Command: /home/airat/20252026-215-autumn/template/out/bin/Example_selftest /home/airat/20252026-215-autumn/template/out/bin/test/test_scenario_06.txt
+==71610== 
+[36m/home/airat/20252026-215-autumn/template/src/main.cpp[0m : [33m17[0m	[32mStart program[0m
+2.23607
+==71610== 
+==71610== HEAP SUMMARY:
+==71610==     in use at exit: 0 bytes in 0 blocks
+==71610==   total heap usage: 50 allocs, 50 frees, 111,908 bytes allocated
+==71610== 
+==71610== All heap blocks were freed -- no leaks are possible
+==71610== 
+==71610== For lists of detected and suppressed errors, rerun with: -s
+==71610== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+<end of output>
+Test time =   1.24 sec
+----------------------------------------------------------
+Test Passed.
+"Example_test_scenario_6" end time: Dec 06 00:40 MSK
+"Example_test_scenario_6" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Dec 06 00:40 MSK

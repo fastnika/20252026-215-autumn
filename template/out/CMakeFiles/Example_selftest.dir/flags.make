@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSELFTEST
 
-CXX_INCLUDES = -I/home/airat/20252026-215-autumn/template/env/exception/inc -I/home/airat/20252026-215-autumn/template/env/interface/inc -I/home/airat/20252026-215-autumn/template/env/resource/inc -I/home/airat/20252026-215-autumn/template/env/implement/inc
+CXX_INCLUDES = -I/home/airat/20252026-215-autumn/template/env/interface/inc -I/home/airat/20252026-215-autumn/template/env/exception/inc -I/home/airat/20252026-215-autumn/template/env/resource/inc -I/home/airat/20252026-215-autumn/template/env/implement/inc
 
-CXX_FLAGS = -g -O0 -std=gnu++17 -g -O0
+CXX_FLAGS =  		-W -Wall -Wfloat-equal -Wpointer-arith -Wwrite-strings -Wcast-align -Wformat-security 		-Wmissing-format-attribute -Wformat=1 -Wno-long-long -Wcast-align -Winline -Werror 		-pedantic -pedantic-errors -Wunused -Wuninitialized --param inline-unit-growth=1000000 		--param max-inline-insns-single=10000000 --param large-function-growth=10000000 -fPIC -DDEBUG_MODE -DDEBUG_MODE -g -std=gnu++17 -g --coverage -O0
 

@@ -1,8 +1,8 @@
 /*!
-\file main.cpp
-\author Мусин А.Р.
-\date 1 Декабря 2025
-\brief Главная программа
+    \file main.cpp
+    \author Мусин А.Р.
+    \date 1 Декабря 2025
+    \brief Главная программа
 */
 
 #include "interface.h"
@@ -13,7 +13,7 @@
 #include <vector>
 #include <sstream>
 
-int main(int argc, char* argv[]) {
+int main(int argc, [[maybe_unused]] char* argv[]) {
     DEBUG_LOGGING("Start program");
     
     std::vector<Polygon> polygons;

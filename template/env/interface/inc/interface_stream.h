@@ -1,8 +1,9 @@
 /*!
-\file interface_stream.h
-\author Мусин А.Р
-\date 1 декабря 2025
-\brief Класс для работы с потоком команд
+    \file interface_stream.h
+    \author Мусин А.Р
+    \date 1 декабря 2025
+    \brief Класс для работы с потоком команд
+    
 */
 
 #pragma once

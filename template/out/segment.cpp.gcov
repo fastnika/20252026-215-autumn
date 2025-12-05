@@ -1,0 +1,95 @@
+        -:    0:Source:/home/airat/20252026-215-autumn/template/env/implement/src/segment.cpp
+        -:    0:Graph:./env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.gcno
+        -:    0:Data:./env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.gcda
+        -:    0:Runs:6
+        -:    1:/*!
+        -:    2:    \file segment.cpp
+        -:    3:    \author Мусин А.Р.
+        -:    4:    \date 1 Декабря 2025
+        -:    5:    \brief Реализация методов класса Segment
+        -:    6:*/
+        -:    7:
+        -:    8:#include "segment.h"
+        -:    9:#include "polygon_utils.h"
+        -:   10:#include <algorithm>
+        -:   11:
+    #####:   12:Segment::Segment() : p1_(), p2_(), is_defined_(false) {}
+        -:   13:
+      271:   14:Segment::Segment(const Point& p1, const Point& p2)
+     271*:   15:    : p1_(p1), p2_(p2), is_defined_(p1.IsDef() && p2.IsDef()) {}
+        -:   16:
+      116:   17:Point Segment::GetP1() const { return p1_; }
+        -:   18:
+      116:   19:Point Segment::GetP2() const { return p2_; }
+        -:   20:
+    #####:   21:double Segment::Length() const { return p1_.Distance(p2_); }
+        -:   22:
+    #####:   23:Point Segment::Direction() const { return p2_ - p1_; }
+        -:   24:
+    #####:   25:double Segment::DistanceToPoint(const Point& p) const {
+    #####:   26:    Point ab = p2_ - p1_;
+    #####:   27:    Point ap = p - p1_;
+    #####:   28:    double ab2 = ab.Dot(ab);
+    #####:   29:    if (ab2 < PolygonUtils::EPSILON) return p1_.Distance(p);
+    #####:   30:    double t = ap.Dot(ab) / ab2;
+    #####:   31:    t = std::max(0.0, std::min(1.0, t));
+    #####:   32:    Point closest = p1_ + ab * t;
+    #####:   33:    return p.Distance(closest);
+        -:   34:}
+        -:   35:
+       58:   36:double Segment::DistanceToSegment(const Segment& other) const {
+       58:   37:    Point d1 = p2_ - p1_;
+       58:   38:    Point d2 = other.p2_ - other.p1_;
+       58:   39:    Point r = p1_ - other.p1_;
+       58:   40:    double a = d1.Dot(d1);
+       58:   41:    double b = d1.Dot(d2);
+       58:   42:    double c = d2.Dot(d2);
+       58:   43:    double d_ = d1.Dot(r);
+       58:   44:    double e = d2.Dot(r);
+       58:   45:    double det = a * c - b * b;
+       58:   46:    double s = 0.0, t = 0.0;
+        -:   47:
+      58*:   48:    if (a < PolygonUtils::EPSILON) return other.DistanceToPoint(p1_);
+      58*:   49:    if (c < PolygonUtils::EPSILON) return DistanceToPoint(other.p1_);
+        -:   50:
+       58:   51:    if (det < PolygonUtils::EPSILON) {
+       18:   52:        s = 0.0;
+       18:   53:        if (b > PolygonUtils::EPSILON) {
+       12:   54:            t = d_ / b;
+        6:   55:        } else if (c > PolygonUtils::EPSILON) {
+        6:   56:            t = e / c;
+        -:   57:        }
+       18:   58:        t = std::max(0.0, std::min(1.0, t));
+        -:   59:    } else {
+       40:   60:        s = (b * e - c * d_) / det;
+       40:   61:        t = (a * e - b * d_) / det;
+       40:   62:        s = std::max(0.0, std::min(1.0, s));
+       40:   63:        t = std::max(0.0, std::min(1.0, t));
+        -:   64:    }
+        -:   65:
+       58:   66:    Point c1 = p1_ + d1 * s;
+       58:   67:    Point c2 = other.p1_ + d2 * t;
+       58:   68:    return c1.Distance(c2);
+        -:   69:}
+        -:   70:
+       63:   71:bool Segment::Intersects(const Segment& other) const {
+       63:   72:    Point d1 = p2_ - p1_;
+       63:   73:    Point d2 = other.p2_ - other.p1_;
+       63:   74:    Point d3 = other.p1_ - p1_;
+       63:   75:    double cross1 = d1.Cross(d2);
+        -:   76:
+       63:   77:    if (std::abs(cross1) < PolygonUtils::EPSILON) {
+       20:   78:        if (std::abs(d1.Cross(d3)) < PolygonUtils::EPSILON) {
+        5:   79:            double t0 = d1.Dot(d3) / d1.Dot(d1);
+        5:   80:            double t1 = t0 + d1.Dot(d2) / d1.Dot(d1);
+       5*:   81:            if (t0 > t1) std::swap(t0, t1);
+       5*:   82:            return (t1 >= -PolygonUtils::EPSILON && t0 <= 1.0 + PolygonUtils::EPSILON);
+        -:   83:        }
+       15:   84:        return false;
+        -:   85:    }
+        -:   86:
+       43:   87:    double t = d3.Cross(d2) / cross1;
+       43:   88:    double u = d3.Cross(d1) / cross1;
+       29:   89:    return (t >= -PolygonUtils::EPSILON && t <= 1.0 + PolygonUtils::EPSILON &&
+       72:   90:            u >= -PolygonUtils::EPSILON && u <= 1.0 + PolygonUtils::EPSILON);
+        -:   91:}

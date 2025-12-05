@@ -1,8 +1,8 @@
 /*!
-\file interface.h
-\author Мусин А.Р
-\date 1 декабря 2025
-\brief Интерфейс приложения
+    \file interface.h
+    \author Мусин А.Р
+    \date 1 декабря 2025
+    \brief Интерфейс приложения
 */
 
 #pragma once

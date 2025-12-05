@@ -1,81 +1,99 @@
 /*!
-\file polygon.h
-\author Мусин А.Р.
-\date 1 Декабря 2025
-\brief Классы для работы с геометрическими объектами
+    \file polygon.h
+    \author Мусин А.Р.
+    \date 1 Декабря 2025
+    \brief Заголовочный файл с описанием класса Polygon
 */
 
-#ifndef POLYGON_DISTANCE_H
-#define POLYGON_DISTANCE_H
+#pragma once
 
 #include <vector>
-#include <cmath>
-#include <algorithm>
-#include <limits>
+#include "point.h"
+#include "segment.h"
 
-class Point {
-private:
-    double x_, y_;
-    bool is_defined_;
-
-public:
-    Point();
-    Point(double x, double y);
-    bool IsDef() const { return is_defined_; }
-    double GetX() const;
-    double GetY() const;
-    Point operator+(const Point& other) const;
-    Point operator-(const Point& other) const;
-    Point operator*(double scalar) const;
-    double Dot(const Point& other) const;
-    double Cross(const Point& other) const;
-    double Length() const;
-    double Distance(const Point& other) const;
-    friend Point operator*(double scalar, const Point& p);
-};
-
-class Segment {
-private:
-    Point p1_, p2_;
-    bool is_defined_;
-
-public:
-    Segment();
-    Segment(const Point& p1, const Point& p2);
-    bool IsDef() const { return is_defined_; }
-    Point GetP1() const;
-    Point GetP2() const;
-    double Length() const;
-    Point Direction() const;
-    double DistanceToPoint(const Point& p) const;
-    double DistanceToSegment(const Segment& other) const;
-    bool Intersects(const Segment& other) const;
-};
-
+/*!
+Класс для работы с многоугольником на плоскости
+*/
 class Polygon {
 private:
     std::vector<Point> vertices_;
     bool is_defined_;
 
 public:
+    /*!
+    Конструктор по умолчанию (неопределённый многоугольник)
+    */
     Polygon();
+
+    /*!
+    Конструктор с параметрами
+    \param vertices Вектор вершин многоугольника (минимум 3 вершины)
+    */
     Polygon(const std::vector<Point>& vertices);
+
+    /*!
+    Проверка, определён ли многоугольник
+    \return true если многоугольник определён и содержит минимум 3 вершины
+    */
     bool IsDef() const { return is_defined_; }
+
+    /*!
+    Получить количество вершин
+    \return Количество вершин многоугольника
+    */
     size_t Size() const { return vertices_.size(); }
+
+    /*!
+    Получить вершину по индексу
+    \param index Индекс вершины
+    \return Вершина с указанным индексом
+    \throw std::out_of_range если индекс выходит за границы
+    */
     Point GetVertex(size_t index) const;
+
+    /*!
+    Получить ребро (отрезок) по индексу
+    \param index Индекс ребра
+    \return Отрезок от вершины index к вершине (index+1)%size
+    \throw std::out_of_range если индекс выходит за границы
+    */
     Segment GetEdge(size_t index) const;
+
+    /*!
+    Вычислить площадь многоугольника
+    \return Площадь многоугольника
+    \throw std::runtime_error если многоугольник не определён
+    */
     double Area() const;
+
+    /*!
+    Проверить, является ли многоугольник вырожденным (площадь ≈ 0)
+    \return true если многоугольник вырожден
+    */
     bool IsDegenerate() const;
+
+    /*!
+    Проверить, содержит ли многоугольник точку
+    \param p Проверяемая точка
+    \return true если точка находится внутри многоугольника или на его границе
+    */
     bool Contains(const Point& p) const;
+
+    /*!
+    Проверить пересечение с другим многоугольником
+    \param other Другой многоугольник
+    \return true если многоугольники пересекаются
+    \throw std::runtime_error если один из многоугольников не определён
+    */
     bool Intersects(const Polygon& other) const;
+
+    /*!
+    Вычислить минимальное расстояние до другого многоугольника
+    \param other Другой многоугольник
+    \return Минимальное расстояние между многоугольниками (0 если пересекаются)
+    \throw std::runtime_error если один из многоугольников вырожден
+    */
     double Distance(const Polygon& other) const;
+    int GetVertexCount() const;
+
 };
-
-namespace PolygonUtils {
-    extern const double EPSILON;
-    extern const double INF;
-    bool AreCollinear(const Point& p1, const Point& p2, const Point& p3, double eps = 1e-9);
-    bool IsPointOnSegment(const Point& p, const Segment& seg, double eps = 1e-9);
-}
-
-#endif

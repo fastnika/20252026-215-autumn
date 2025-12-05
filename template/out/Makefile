@@ -153,43 +153,56 @@ Example_selftest/fast:
 .PHONY : Example_selftest/fast
 
 #=============================================================================
-# Target rules for targets named exception
+# Target rules for targets named Example_selftest_prepare_env
 
 # Build rule for target.
-exception: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exception
-.PHONY : exception
+Example_selftest_prepare_env: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Example_selftest_prepare_env
+.PHONY : Example_selftest_prepare_env
 
 # fast build rule for target.
-exception/fast:
-	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/build
-.PHONY : exception/fast
+Example_selftest_prepare_env/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example_selftest_prepare_env.dir/build.make CMakeFiles/Example_selftest_prepare_env.dir/build
+.PHONY : Example_selftest_prepare_env/fast
 
 #=============================================================================
-# Target rules for targets named implement
+# Target rules for targets named Example_exception
 
 # Build rule for target.
-implement: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 implement
-.PHONY : implement
+Example_exception: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Example_exception
+.PHONY : Example_exception
 
 # fast build rule for target.
-implement/fast:
-	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/build
-.PHONY : implement/fast
+Example_exception/fast:
+	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/build
+.PHONY : Example_exception/fast
 
 #=============================================================================
-# Target rules for targets named interface
+# Target rules for targets named Example_implementation
 
 # Build rule for target.
-interface: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 interface
-.PHONY : interface
+Example_implementation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Example_implementation
+.PHONY : Example_implementation
 
 # fast build rule for target.
-interface/fast:
-	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/build
-.PHONY : interface/fast
+Example_implementation/fast:
+	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/build
+.PHONY : Example_implementation/fast
+
+#=============================================================================
+# Target rules for targets named Example_interface
+
+# Build rule for target.
+Example_interface: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Example_interface
+.PHONY : Example_interface
+
+# fast build rule for target.
+Example_interface/fast:
+	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/build
+.PHONY : Example_interface/fast
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -227,11 +240,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... Example_selftest_prepare_env"
 	@echo "... Example"
+	@echo "... Example_exception"
+	@echo "... Example_implementation"
+	@echo "... Example_interface"
 	@echo "... Example_selftest"
-	@echo "... exception"
-	@echo "... implement"
-	@echo "... interface"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -127,25 +127,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-env/exception/CMakeFiles/exception.dir/rule:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/exception/CMakeFiles/exception.dir/rule
-.PHONY : env/exception/CMakeFiles/exception.dir/rule
+env/exception/CMakeFiles/Example_exception.dir/rule:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/exception/CMakeFiles/Example_exception.dir/rule
+.PHONY : env/exception/CMakeFiles/Example_exception.dir/rule
 
 # Convenience name for target.
-exception: env/exception/CMakeFiles/exception.dir/rule
-.PHONY : exception
+Example_exception: env/exception/CMakeFiles/Example_exception.dir/rule
+.PHONY : Example_exception
 
 # fast build rule for target.
-exception/fast:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/build
-.PHONY : exception/fast
+Example_exception/fast:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/build
+.PHONY : Example_exception/fast
 
 src/base_exception.o: src/base_exception.cpp.o
 .PHONY : src/base_exception.o
 
 # target to build an object file
 src/base_exception.cpp.o:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/src/base_exception.cpp.o
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/src/base_exception.cpp.o
 .PHONY : src/base_exception.cpp.o
 
 src/base_exception.i: src/base_exception.cpp.i
@@ -153,7 +153,7 @@ src/base_exception.i: src/base_exception.cpp.i
 
 # target to preprocess a source file
 src/base_exception.cpp.i:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/src/base_exception.cpp.i
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/src/base_exception.cpp.i
 .PHONY : src/base_exception.cpp.i
 
 src/base_exception.s: src/base_exception.cpp.s
@@ -161,7 +161,7 @@ src/base_exception.s: src/base_exception.cpp.s
 
 # target to generate assembly for a file
 src/base_exception.cpp.s:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/src/base_exception.cpp.s
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/src/base_exception.cpp.s
 .PHONY : src/base_exception.cpp.s
 
 # Help Target
@@ -173,7 +173,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... exception"
+	@echo "... Example_exception"
 	@echo "... src/base_exception.o"
 	@echo "... src/base_exception.i"
 	@echo "... src/base_exception.s"

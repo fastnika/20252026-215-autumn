@@ -127,25 +127,49 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-env/implement/CMakeFiles/implement.dir/rule:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/implement/CMakeFiles/implement.dir/rule
-.PHONY : env/implement/CMakeFiles/implement.dir/rule
+env/implement/CMakeFiles/Example_implementation.dir/rule:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/implement/CMakeFiles/Example_implementation.dir/rule
+.PHONY : env/implement/CMakeFiles/Example_implementation.dir/rule
 
 # Convenience name for target.
-implement: env/implement/CMakeFiles/implement.dir/rule
-.PHONY : implement
+Example_implementation: env/implement/CMakeFiles/Example_implementation.dir/rule
+.PHONY : Example_implementation
 
 # fast build rule for target.
-implement/fast:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/build
-.PHONY : implement/fast
+Example_implementation/fast:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/build
+.PHONY : Example_implementation/fast
+
+src/point.o: src/point.cpp.o
+.PHONY : src/point.o
+
+# target to build an object file
+src/point.cpp.o:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/point.cpp.o
+.PHONY : src/point.cpp.o
+
+src/point.i: src/point.cpp.i
+.PHONY : src/point.i
+
+# target to preprocess a source file
+src/point.cpp.i:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/point.cpp.i
+.PHONY : src/point.cpp.i
+
+src/point.s: src/point.cpp.s
+.PHONY : src/point.s
+
+# target to generate assembly for a file
+src/point.cpp.s:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/point.cpp.s
+.PHONY : src/point.cpp.s
 
 src/polygon.o: src/polygon.cpp.o
 .PHONY : src/polygon.o
 
 # target to build an object file
 src/polygon.cpp.o:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/src/polygon.cpp.o
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/polygon.cpp.o
 .PHONY : src/polygon.cpp.o
 
 src/polygon.i: src/polygon.cpp.i
@@ -153,7 +177,7 @@ src/polygon.i: src/polygon.cpp.i
 
 # target to preprocess a source file
 src/polygon.cpp.i:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/src/polygon.cpp.i
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/polygon.cpp.i
 .PHONY : src/polygon.cpp.i
 
 src/polygon.s: src/polygon.cpp.s
@@ -161,8 +185,56 @@ src/polygon.s: src/polygon.cpp.s
 
 # target to generate assembly for a file
 src/polygon.cpp.s:
-	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/src/polygon.cpp.s
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/polygon.cpp.s
 .PHONY : src/polygon.cpp.s
+
+src/polygon_utils.o: src/polygon_utils.cpp.o
+.PHONY : src/polygon_utils.o
+
+# target to build an object file
+src/polygon_utils.cpp.o:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/polygon_utils.cpp.o
+.PHONY : src/polygon_utils.cpp.o
+
+src/polygon_utils.i: src/polygon_utils.cpp.i
+.PHONY : src/polygon_utils.i
+
+# target to preprocess a source file
+src/polygon_utils.cpp.i:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/polygon_utils.cpp.i
+.PHONY : src/polygon_utils.cpp.i
+
+src/polygon_utils.s: src/polygon_utils.cpp.s
+.PHONY : src/polygon_utils.s
+
+# target to generate assembly for a file
+src/polygon_utils.cpp.s:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/polygon_utils.cpp.s
+.PHONY : src/polygon_utils.cpp.s
+
+src/segment.o: src/segment.cpp.o
+.PHONY : src/segment.o
+
+# target to build an object file
+src/segment.cpp.o:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.o
+.PHONY : src/segment.cpp.o
+
+src/segment.i: src/segment.cpp.i
+.PHONY : src/segment.i
+
+# target to preprocess a source file
+src/segment.cpp.i:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.i
+.PHONY : src/segment.cpp.i
+
+src/segment.s: src/segment.cpp.s
+.PHONY : src/segment.s
+
+# target to generate assembly for a file
+src/segment.cpp.s:
+	cd /home/airat/20252026-215-autumn/template/out && $(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/src/segment.cpp.s
+.PHONY : src/segment.cpp.s
 
 # Help Target
 help:
@@ -173,10 +245,19 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... implement"
+	@echo "... Example_implementation"
+	@echo "... src/point.o"
+	@echo "... src/point.i"
+	@echo "... src/point.s"
 	@echo "... src/polygon.o"
 	@echo "... src/polygon.i"
 	@echo "... src/polygon.s"
+	@echo "... src/polygon_utils.o"
+	@echo "... src/polygon_utils.i"
+	@echo "... src/polygon_utils.s"
+	@echo "... src/segment.o"
+	@echo "... src/segment.i"
+	@echo "... src/segment.s"
 .PHONY : help
 
 

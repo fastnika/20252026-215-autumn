@@ -1,8 +1,8 @@
 /*!
-\file resource.h
-\author Мусин А.Р
-\date 1 декабря 2025
-\brief Ресурсы: коды ошибок и макросы логирования
+    \file resource.h
+    \author Мусин А.Р
+    \date 1 декабря 2025
+    \brief Ресурсы: коды ошибок и макросы логирования
 */
 
 #pragma once

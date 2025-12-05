@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libExample_implementation.a CMakeFiles/Example_implementation.dir/src/point.cpp.o CMakeFiles/Example_implementation.dir/src/polygon.cpp.o CMakeFiles/Example_implementation.dir/src/polygon_utils.cpp.o CMakeFiles/Example_implementation.dir/src/segment.cpp.o
+/usr/bin/ranlib ../../bin/libExample_implementation.a

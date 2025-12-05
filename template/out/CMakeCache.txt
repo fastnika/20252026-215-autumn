@@ -199,37 +199,37 @@ Example_IS_TOP_LEVEL:STATIC=ON
 Example_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template
 
 //Value Computed by CMake
-exception_BINARY_DIR:STATIC=/home/airat/20252026-215-autumn/template/out/env/exception
+Example_exception_BINARY_DIR:STATIC=/home/airat/20252026-215-autumn/template/out/env/exception
 
 //Value Computed by CMake
-exception_IS_TOP_LEVEL:STATIC=OFF
+Example_exception_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-exception_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template/env/exception
+Example_exception_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template/env/exception
 
 //Value Computed by CMake
-implement_BINARY_DIR:STATIC=/home/airat/20252026-215-autumn/template/out/env/implement
+Example_implementation_BINARY_DIR:STATIC=/home/airat/20252026-215-autumn/template/out/env/implement
 
 //Value Computed by CMake
-implement_IS_TOP_LEVEL:STATIC=OFF
+Example_implementation_IS_TOP_LEVEL:STATIC=OFF
 
 //Dependencies for the target
-implement_LIB_DEPENDS:STATIC=general;exception;
+Example_implementation_LIB_DEPENDS:STATIC=general;Example_exception;general;gcov;
 
 //Value Computed by CMake
-implement_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template/env/implement
+Example_implementation_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template/env/implement
 
 //Value Computed by CMake
-interface_BINARY_DIR:STATIC=/home/airat/20252026-215-autumn/template/out/env/interface
+Example_interface_BINARY_DIR:STATIC=/home/airat/20252026-215-autumn/template/out/env/interface
 
 //Value Computed by CMake
-interface_IS_TOP_LEVEL:STATIC=OFF
+Example_interface_IS_TOP_LEVEL:STATIC=OFF
 
 //Dependencies for the target
-interface_LIB_DEPENDS:STATIC=general;exception;
+Example_interface_LIB_DEPENDS:STATIC=general;Example_exception;
 
 //Value Computed by CMake
-interface_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template/env/interface
+Example_interface_SOURCE_DIR:STATIC=/home/airat/20252026-215-autumn/template/env/interface
 
 
 ########################

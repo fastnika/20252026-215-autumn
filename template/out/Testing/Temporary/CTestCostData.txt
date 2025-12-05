@@ -1,3 +1,7 @@
-Example_test_scenario_0 2 0.00302729
-Example_test_scenario_1 2 0.00279098
+Example_test_scenario_1 1 1.3991
+Example_test_scenario_2 1 1.14312
+Example_test_scenario_3 1 1.27216
+Example_test_scenario_4 1 1.2158
+Example_test_scenario_5 1 1.21245
+Example_test_scenario_6 1 1.24372
 ---

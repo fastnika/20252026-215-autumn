@@ -65,6 +65,7 @@ CMAKE_BINARY_DIR = /home/airat/20252026-215-autumn/template/out
 # The main recursive "all" target.
 all: CMakeFiles/Example.dir/all
 all: CMakeFiles/Example_selftest.dir/all
+all: CMakeFiles/Example_selftest_prepare_env.dir/all
 all: env/exception/all
 all: env/implement/all
 all: env/interface/all
@@ -79,6 +80,7 @@ preinstall: env/interface/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/Example.dir/clean
 clean: CMakeFiles/Example_selftest.dir/clean
+clean: CMakeFiles/Example_selftest_prepare_env.dir/clean
 clean: env/exception/clean
 clean: env/implement/clean
 clean: env/interface/clean
@@ -88,7 +90,7 @@ clean: env/interface/clean
 # Directory level rules for directory env/exception
 
 # Recursive "all" directory target.
-env/exception/all: env/exception/CMakeFiles/exception.dir/all
+env/exception/all: env/exception/CMakeFiles/Example_exception.dir/all
 .PHONY : env/exception/all
 
 # Recursive "preinstall" directory target.
@@ -96,14 +98,14 @@ env/exception/preinstall:
 .PHONY : env/exception/preinstall
 
 # Recursive "clean" directory target.
-env/exception/clean: env/exception/CMakeFiles/exception.dir/clean
+env/exception/clean: env/exception/CMakeFiles/Example_exception.dir/clean
 .PHONY : env/exception/clean
 
 #=============================================================================
 # Directory level rules for directory env/implement
 
 # Recursive "all" directory target.
-env/implement/all: env/implement/CMakeFiles/implement.dir/all
+env/implement/all: env/implement/CMakeFiles/Example_implementation.dir/all
 .PHONY : env/implement/all
 
 # Recursive "preinstall" directory target.
@@ -111,14 +113,14 @@ env/implement/preinstall:
 .PHONY : env/implement/preinstall
 
 # Recursive "clean" directory target.
-env/implement/clean: env/implement/CMakeFiles/implement.dir/clean
+env/implement/clean: env/implement/CMakeFiles/Example_implementation.dir/clean
 .PHONY : env/implement/clean
 
 #=============================================================================
 # Directory level rules for directory env/interface
 
 # Recursive "all" directory target.
-env/interface/all: env/interface/CMakeFiles/interface.dir/all
+env/interface/all: env/interface/CMakeFiles/Example_interface.dir/all
 .PHONY : env/interface/all
 
 # Recursive "preinstall" directory target.
@@ -126,16 +128,16 @@ env/interface/preinstall:
 .PHONY : env/interface/preinstall
 
 # Recursive "clean" directory target.
-env/interface/clean: env/interface/CMakeFiles/interface.dir/clean
+env/interface/clean: env/interface/CMakeFiles/Example_interface.dir/clean
 .PHONY : env/interface/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Example.dir
 
 # All Build rule for target.
-CMakeFiles/Example.dir/all: env/exception/CMakeFiles/exception.dir/all
-CMakeFiles/Example.dir/all: env/implement/CMakeFiles/implement.dir/all
-CMakeFiles/Example.dir/all: env/interface/CMakeFiles/interface.dir/all
+CMakeFiles/Example.dir/all: env/exception/CMakeFiles/Example_exception.dir/all
+CMakeFiles/Example.dir/all: env/implement/CMakeFiles/Example_implementation.dir/all
+CMakeFiles/Example.dir/all: env/interface/CMakeFiles/Example_interface.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example.dir/build.make CMakeFiles/Example.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example.dir/build.make CMakeFiles/Example.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=1,2 "Built target Example"
@@ -143,7 +145,7 @@ CMakeFiles/Example.dir/all: env/interface/CMakeFiles/interface.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 0
 .PHONY : CMakeFiles/Example.dir/rule
@@ -161,17 +163,18 @@ CMakeFiles/Example.dir/clean:
 # Target rules for target CMakeFiles/Example_selftest.dir
 
 # All Build rule for target.
-CMakeFiles/Example_selftest.dir/all: env/exception/CMakeFiles/exception.dir/all
-CMakeFiles/Example_selftest.dir/all: env/implement/CMakeFiles/implement.dir/all
-CMakeFiles/Example_selftest.dir/all: env/interface/CMakeFiles/interface.dir/all
+CMakeFiles/Example_selftest.dir/all: CMakeFiles/Example_selftest_prepare_env.dir/all
+CMakeFiles/Example_selftest.dir/all: env/exception/CMakeFiles/Example_exception.dir/all
+CMakeFiles/Example_selftest.dir/all: env/implement/CMakeFiles/Example_implementation.dir/all
+CMakeFiles/Example_selftest.dir/all: env/interface/CMakeFiles/Example_interface.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example_selftest.dir/build.make CMakeFiles/Example_selftest.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example_selftest.dir/build.make CMakeFiles/Example_selftest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=3,4 "Built target Example_selftest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=13,14 "Built target Example_selftest"
 .PHONY : CMakeFiles/Example_selftest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Example_selftest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Example_selftest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 0
 .PHONY : CMakeFiles/Example_selftest.dir/rule
@@ -186,82 +189,108 @@ CMakeFiles/Example_selftest.dir/clean:
 .PHONY : CMakeFiles/Example_selftest.dir/clean
 
 #=============================================================================
-# Target rules for target env/exception/CMakeFiles/exception.dir
+# Target rules for target CMakeFiles/Example_selftest_prepare_env.dir
 
 # All Build rule for target.
-env/exception/CMakeFiles/exception.dir/all:
-	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/depend
-	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=5,6 "Built target exception"
-.PHONY : env/exception/CMakeFiles/exception.dir/all
+CMakeFiles/Example_selftest_prepare_env.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example_selftest_prepare_env.dir/build.make CMakeFiles/Example_selftest_prepare_env.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example_selftest_prepare_env.dir/build.make CMakeFiles/Example_selftest_prepare_env.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=15,16,17,18,19,20 "Built target Example_selftest_prepare_env"
+.PHONY : CMakeFiles/Example_selftest_prepare_env.dir/all
 
 # Build rule for subdir invocation for target.
-env/exception/CMakeFiles/exception.dir/rule: cmake_check_build_system
+CMakeFiles/Example_selftest_prepare_env.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Example_selftest_prepare_env.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 0
+.PHONY : CMakeFiles/Example_selftest_prepare_env.dir/rule
+
+# Convenience name for target.
+Example_selftest_prepare_env: CMakeFiles/Example_selftest_prepare_env.dir/rule
+.PHONY : Example_selftest_prepare_env
+
+# clean rule for target.
+CMakeFiles/Example_selftest_prepare_env.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Example_selftest_prepare_env.dir/build.make CMakeFiles/Example_selftest_prepare_env.dir/clean
+.PHONY : CMakeFiles/Example_selftest_prepare_env.dir/clean
+
+#=============================================================================
+# Target rules for target env/exception/CMakeFiles/Example_exception.dir
+
+# All Build rule for target.
+env/exception/CMakeFiles/Example_exception.dir/all:
+	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/depend
+	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=3,4 "Built target Example_exception"
+.PHONY : env/exception/CMakeFiles/Example_exception.dir/all
+
+# Build rule for subdir invocation for target.
+env/exception/CMakeFiles/Example_exception.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/exception/CMakeFiles/exception.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/exception/CMakeFiles/Example_exception.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 0
-.PHONY : env/exception/CMakeFiles/exception.dir/rule
+.PHONY : env/exception/CMakeFiles/Example_exception.dir/rule
 
 # Convenience name for target.
-exception: env/exception/CMakeFiles/exception.dir/rule
-.PHONY : exception
+Example_exception: env/exception/CMakeFiles/Example_exception.dir/rule
+.PHONY : Example_exception
 
 # clean rule for target.
-env/exception/CMakeFiles/exception.dir/clean:
-	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/exception.dir/build.make env/exception/CMakeFiles/exception.dir/clean
-.PHONY : env/exception/CMakeFiles/exception.dir/clean
+env/exception/CMakeFiles/Example_exception.dir/clean:
+	$(MAKE) $(MAKESILENT) -f env/exception/CMakeFiles/Example_exception.dir/build.make env/exception/CMakeFiles/Example_exception.dir/clean
+.PHONY : env/exception/CMakeFiles/Example_exception.dir/clean
 
 #=============================================================================
-# Target rules for target env/implement/CMakeFiles/implement.dir
+# Target rules for target env/implement/CMakeFiles/Example_implementation.dir
 
 # All Build rule for target.
-env/implement/CMakeFiles/implement.dir/all: env/exception/CMakeFiles/exception.dir/all
-	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/depend
-	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=7,8 "Built target implement"
-.PHONY : env/implement/CMakeFiles/implement.dir/all
+env/implement/CMakeFiles/Example_implementation.dir/all: env/exception/CMakeFiles/Example_exception.dir/all
+	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/depend
+	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=5,6,7,8,9 "Built target Example_implementation"
+.PHONY : env/implement/CMakeFiles/Example_implementation.dir/all
 
 # Build rule for subdir invocation for target.
-env/implement/CMakeFiles/implement.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/implement/CMakeFiles/implement.dir/all
+env/implement/CMakeFiles/Example_implementation.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/implement/CMakeFiles/Example_implementation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 0
-.PHONY : env/implement/CMakeFiles/implement.dir/rule
+.PHONY : env/implement/CMakeFiles/Example_implementation.dir/rule
 
 # Convenience name for target.
-implement: env/implement/CMakeFiles/implement.dir/rule
-.PHONY : implement
+Example_implementation: env/implement/CMakeFiles/Example_implementation.dir/rule
+.PHONY : Example_implementation
 
 # clean rule for target.
-env/implement/CMakeFiles/implement.dir/clean:
-	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/implement.dir/build.make env/implement/CMakeFiles/implement.dir/clean
-.PHONY : env/implement/CMakeFiles/implement.dir/clean
+env/implement/CMakeFiles/Example_implementation.dir/clean:
+	$(MAKE) $(MAKESILENT) -f env/implement/CMakeFiles/Example_implementation.dir/build.make env/implement/CMakeFiles/Example_implementation.dir/clean
+.PHONY : env/implement/CMakeFiles/Example_implementation.dir/clean
 
 #=============================================================================
-# Target rules for target env/interface/CMakeFiles/interface.dir
+# Target rules for target env/interface/CMakeFiles/Example_interface.dir
 
 # All Build rule for target.
-env/interface/CMakeFiles/interface.dir/all: env/exception/CMakeFiles/exception.dir/all
-	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/depend
-	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=9,10,11 "Built target interface"
-.PHONY : env/interface/CMakeFiles/interface.dir/all
+env/interface/CMakeFiles/Example_interface.dir/all: env/exception/CMakeFiles/Example_exception.dir/all
+	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/depend
+	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/airat/20252026-215-autumn/template/out/CMakeFiles --progress-num=10,11,12 "Built target Example_interface"
+.PHONY : env/interface/CMakeFiles/Example_interface.dir/all
 
 # Build rule for subdir invocation for target.
-env/interface/CMakeFiles/interface.dir/rule: cmake_check_build_system
+env/interface/CMakeFiles/Example_interface.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 5
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/interface/CMakeFiles/interface.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 env/interface/CMakeFiles/Example_interface.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/airat/20252026-215-autumn/template/out/CMakeFiles 0
-.PHONY : env/interface/CMakeFiles/interface.dir/rule
+.PHONY : env/interface/CMakeFiles/Example_interface.dir/rule
 
 # Convenience name for target.
-interface: env/interface/CMakeFiles/interface.dir/rule
-.PHONY : interface
+Example_interface: env/interface/CMakeFiles/Example_interface.dir/rule
+.PHONY : Example_interface
 
 # clean rule for target.
-env/interface/CMakeFiles/interface.dir/clean:
-	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/interface.dir/build.make env/interface/CMakeFiles/interface.dir/clean
-.PHONY : env/interface/CMakeFiles/interface.dir/clean
+env/interface/CMakeFiles/Example_interface.dir/clean:
+	$(MAKE) $(MAKESILENT) -f env/interface/CMakeFiles/Example_interface.dir/build.make env/interface/CMakeFiles/Example_interface.dir/clean
+.PHONY : env/interface/CMakeFiles/Example_interface.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
